@@ -14,6 +14,7 @@ class App extends React.Component {
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
         <AddNewNPCButton></AddNewNPCButton>
+        <h2>My NPCs</h2>
       </>
     )
   }
