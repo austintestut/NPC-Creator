@@ -2,8 +2,11 @@
   "name": "npc-creator",
   "version": "1.0.0",
   "description": "Application for users to generate and save NPC names and descriptions",
-  "main": "config.js",
+  "main": "public/index.html",
   "scripts": {
+    "start": "nodemon server/index.js",
+    "build": "webpack",
+    "watch": "webpack -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,10 +28,19 @@
     "express": "^4.17.1",
     "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.2.2"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "webpack": "^5.28.0"
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.2",
+    "jest": "^26.6.3",
+    "enzyme": "^3.11.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
+    "webpack": "^5.24.1",
+    "webpack-cli": "^4.5.0"
   }
 }
