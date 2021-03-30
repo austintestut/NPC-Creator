@@ -4,6 +4,9 @@
 # API token config
 config.js
 
+# webpack compilation
+public/app.js
+
 # Logs
 logs
 *.log
