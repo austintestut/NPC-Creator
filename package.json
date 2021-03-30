@@ -1,0 +1,34 @@
+{
+  "name": "npc-creator",
+  "version": "1.0.0",
+  "description": "Application for users to generate and save NPC names and descriptions",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austintestut/NPC-Creator.git"
+  },
+  "keywords": [
+    "NPC",
+    "Creator"
+  ],
+  "author": "Austin Testut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austintestut/NPC-Creator/issues"
+  },
+  "homepage": "https://github.com/austintestut/NPC-Creator#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "webpack": "^5.28.0"
+  }
+}
