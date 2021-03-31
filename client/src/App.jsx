@@ -4,6 +4,7 @@ import axios from 'axios';
 import AddNewNPCButton from './AddNewNPCButton';
 import AddNewNPCForm from './AddNewNPCForm';
 import NPCCardContainer from './NPCCardContainer';
+import helpers from './helperData';
 
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getAllNPCs();
+    console.log(helpers);
   }
 
   getAllNPCs() {
@@ -29,6 +31,33 @@ class App extends React.Component {
       .catch((err) => {
         console.log('err getting NPCs --client');
       })
+  }
+
+  addNPC() {
+
+  }
+
+  generateNPC() {
+    let randomRace = helpers.races[this.randomNumberGenerator(0, 8)];
+    let raceAPIParam = helpers.raceAPIStyle[randomRace];
+    let randomDemeanor = helpers.demeanors[this.randomNumberGenerator(0, 39)];
+
+    axios.get(`/name/${raceAPIParam}`)
+    .then((name) => {
+      document.getElementById('nameInput').value = name.data;
+      document.getElementById('raceInput').value = randomRace;
+      document.getElementById('demeanorInput').value = randomDemeanor;
+    })
+    .catch((err) => {
+      console.log('err generating NPC');
+    })
+  }
+
+  randomNumberGenerator(min, max) {
+    // inclusive of min and max
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   render() {
