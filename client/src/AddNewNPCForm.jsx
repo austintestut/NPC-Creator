@@ -6,7 +6,8 @@ const AddNewNPCForm = ({
   updateNameForm,
   updateRaceForm,
   updateDemeanorForm,
-  addNPC
+  addNPC,
+  cancelAdd
 }) => {
   return (
     <div>
@@ -23,6 +24,7 @@ const AddNewNPCForm = ({
         Demeanor:
       <input type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)}></input>
       </label>
+      <button onClick={cancelAdd}>Cancel</button>
       <button onClick={addNPC}>Save</button>
     </div>
   )

@@ -4,7 +4,8 @@ import styled from 'styled-components';
 const EditNPCForm = ({
   updateNameForm,
   updateRaceForm,
-  updateDemeanorForm
+  updateDemeanorForm,
+  cancelEdit
 }) => {
   return (
     <div>
@@ -20,6 +21,7 @@ const EditNPCForm = ({
         Demeanor:
       <input type="text" id="editDemeanorInput" onChange={(e) => updateDemeanorForm(e)}></input>
       </label>
+      <button onClick={cancelEdit}>Cancel</button>
       <button>Update</button>
     </div>
   )

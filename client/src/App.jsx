@@ -27,6 +27,8 @@ class App extends React.Component {
     this.addNPC = this.addNPC.bind(this);
     this.toggleAddForm = this.toggleAddForm.bind(this);
     this.toggleEditForm = this.toggleEditForm.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
+    this.cancelAdd = this.cancelAdd.bind(this);
   }
 
   componentDidMount() {
@@ -126,13 +128,13 @@ class App extends React.Component {
 
   toggleAddForm() {
     this.setState({
-      addFormShowing: !this.state.addFormShowing
+      addFormShowing: true
     })
   }
 
   toggleEditForm(name, race, demeanor) {
     this.setState({
-      editFormShowing: !this.state.editFormShowing,
+      editFormShowing: true,
       npcFormName: name,
       npcFormRace: race,
       npcFormDemeanor: demeanor
@@ -143,18 +145,39 @@ class App extends React.Component {
     })
   }
 
+  cancelEdit() {
+    this.setState({
+      editFormShowing: false,
+      npcFormName: '',
+      npcFormRace: '',
+      npcFormDemeanor: ''
+    })
+  }
+
+  cancelAdd() {
+    this.setState({
+      addFormShowing: false,
+      npcFormName: '',
+      npcFormRace: '',
+      npcFormDemeanor: ''
+    })
+  }
+
   render() {
     return (
       <>
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
-        <AddNewNPCButton toggleAddForm={this.toggleAddForm} />
+        <AddNewNPCButton
+        toggleAddForm={this.toggleAddForm}
+        />
         {this.state.addFormShowing && <AddNewNPCForm
           generateNPC={this.generateNPC}
           updateNameForm={this.updateNameForm}
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
           addNPC={this.addNPC}
+          cancelAdd={this.cancelAdd}
         />} {/* added temporarily to view*/}
         <h2>My NPCs</h2>
         <NPCCardContainer
@@ -165,6 +188,7 @@ class App extends React.Component {
           updateNameForm={this.updateNameForm}
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
+          cancelEdit={this.cancelEdit}
         />} {/* added temporarily to view*/}
       </>
     )
