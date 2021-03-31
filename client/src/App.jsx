@@ -15,7 +15,9 @@ class App extends React.Component {
       npcData: [],
       npcFormName: '',
       npcFormRace: '',
-      npcFormDemeanor: ''
+      npcFormDemeanor: '',
+      addFormShowing: false,
+      editFormShowing: false
     }
     this.getAllNPCs = this.getAllNPCs.bind(this);
     this.generateNPC = this.generateNPC.bind(this);
@@ -23,6 +25,8 @@ class App extends React.Component {
     this.updateRaceForm = this.updateRaceForm.bind(this);
     this.updateDemeanorForm = this.updateDemeanorForm.bind(this);
     this.addNPC = this.addNPC.bind(this);
+    this.toggleAddForm = this.toggleAddForm.bind(this);
+    this.toggleEditForm = this.toggleEditForm.bind(this);
   }
 
   componentDidMount() {
@@ -120,26 +124,41 @@ class App extends React.Component {
     });
   }
 
+  toggleAddForm() {
+    this.setState({
+      addFormShowing: !this.state.addFormShowing
+    })
+  }
+
+  toggleEditForm() {
+    this.setState({
+      editFormShowing: !this.state.editFormShowing
+    })
+  }
+
   render() {
     return (
       <>
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
-        <AddNewNPCButton />
-        <AddNewNPCForm
+        <AddNewNPCButton toggleAddForm={this.toggleAddForm}/>
+        {this.state.addFormShowing && <AddNewNPCForm
           generateNPC={this.generateNPC}
           updateNameForm={this.updateNameForm}
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
           addNPC={this.addNPC}
-        /> {/* added temporarily to view*/}
+        />} {/* added temporarily to view*/}
         <h2>My NPCs</h2>
-        <NPCCardContainer npcData={this.state.npcData} />
-        <EditNPCForm
+        <NPCCardContainer
+        npcData={this.state.npcData}
+        toggleEditForm={this.toggleEditForm}
+        />
+        {this.state.editFormShowing && <EditNPCForm
           updateNameForm={this.updateNameForm}
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
-        /> {/* added temporarily to view*/}
+        />} {/* added temporarily to view*/}
       </>
     )
   }
