@@ -130,9 +130,16 @@ class App extends React.Component {
     })
   }
 
-  toggleEditForm() {
+  toggleEditForm(name, race, demeanor) {
     this.setState({
-      editFormShowing: !this.state.editFormShowing
+      editFormShowing: !this.state.editFormShowing,
+      npcFormName: name,
+      npcFormRace: race,
+      npcFormDemeanor: demeanor
+    }, () => {
+      document.getElementById('editNameInput').value = name;
+      document.getElementById('editRaceInput').value = race;
+      document.getElementById('editDemeanorInput').value = demeanor;
     })
   }
 
@@ -141,7 +148,7 @@ class App extends React.Component {
       <>
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
-        <AddNewNPCButton toggleAddForm={this.toggleAddForm}/>
+        <AddNewNPCButton toggleAddForm={this.toggleAddForm} />
         {this.state.addFormShowing && <AddNewNPCForm
           generateNPC={this.generateNPC}
           updateNameForm={this.updateNameForm}
@@ -151,8 +158,8 @@ class App extends React.Component {
         />} {/* added temporarily to view*/}
         <h2>My NPCs</h2>
         <NPCCardContainer
-        npcData={this.state.npcData}
-        toggleEditForm={this.toggleEditForm}
+          npcData={this.state.npcData}
+          toggleEditForm={this.toggleEditForm}
         />
         {this.state.editFormShowing && <EditNPCForm
           updateNameForm={this.updateNameForm}
