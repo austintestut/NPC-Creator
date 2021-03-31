@@ -5,12 +5,9 @@ import NPCCard from './NPCCard';
 const NPCCardContainer = ({ npcData }) => {
   // for each NPC in DB:
   return (
-npcData.map((npc) => {
-  return (
-      <NPCCard npc={npc}/>
-  )
-})
-  )
-};
+    npcData.map((npc) => {
+      return <NPCCard key={npc.name} npc={npc} />
+    })
+  )};
 
 export default NPCCardContainer;
