@@ -31,6 +31,7 @@ class App extends React.Component {
     this.cancelEdit = this.cancelEdit.bind(this);
     this.cancelAdd = this.cancelAdd.bind(this);
     this.updateNPC = this.updateNPC.bind(this);
+    this.deleteNPC = this.deleteNPC.bind(this);
   }
 
   componentDidMount() {
@@ -58,7 +59,6 @@ class App extends React.Component {
       window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!');
       return;
     }
-
     axios.post('/npcs', {
       name: this.state.npcFormName,
       race: this.state.npcFormRace,
@@ -118,7 +118,6 @@ class App extends React.Component {
       window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!');
       return;
     }
-
     axios.put('/npcs', {
       id: this.state.editID,
       name: this.state.npcFormName,
@@ -126,6 +125,22 @@ class App extends React.Component {
       demeanor: this.state.npcFormDemeanor
     })
     .then((response) => {
+      this.setState({
+        editFormShowing: false,
+        npcFormName: '',
+        npcFormRace: '',
+        npcFormDemeanor: ''
+      });
+      this.getAllNPCs();
+    })
+  }
+
+  deleteNPC() {
+    axios.put('/npcs/delete', {
+      id: this.state.editID
+    })
+    .then((response) => {
+      console.log('deleted')
       this.setState({
         editFormShowing: false,
         npcFormName: '',
@@ -221,6 +236,7 @@ class App extends React.Component {
           updateDemeanorForm={this.updateDemeanorForm}
           cancelEdit={this.cancelEdit}
           updateNPC={this.updateNPC}
+          deleteNPC={this.deleteNPC}
         />}
       </>
     )

@@ -62,6 +62,21 @@ app.put('/npcs', (req, res) => {
   .then((response) => {
     res.status(201).send('NPC updated');
   })
+  .catch((err) => {
+    console.log(err);
+    res.status(404).send('err updating NPC --server');
+  })
+});
+
+app.put('/npcs/delete', (req, res) => {
+  db.deleteNPC(req.body.id)
+  .then((response) => {
+    res.status(200).send('NPC deleted');
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(404).send('err deleting NPC --server');
+  })
 });
 
 app.listen(port, () => {

@@ -6,10 +6,12 @@ const EditNPCForm = ({
   updateRaceForm,
   updateDemeanorForm,
   cancelEdit,
-  updateNPC
+  updateNPC,
+  deleteNPC
 }) => {
   return (
     <div>
+      <button onClick={deleteNPC}>Delete</button>
       <label>
         Name:
       <input type="text" id="editNameInput" onChange={(e) => updateNameForm(e)}></input>
