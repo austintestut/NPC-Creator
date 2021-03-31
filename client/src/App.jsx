@@ -4,6 +4,7 @@ import axios from 'axios';
 import AddNewNPCButton from './AddNewNPCButton';
 import AddNewNPCForm from './AddNewNPCForm';
 import NPCCardContainer from './NPCCardContainer';
+import EditNPCForm from './EditNPCForm';
 import helpers from './helperData';
 
 
@@ -50,25 +51,25 @@ class App extends React.Component {
       return;
     }
 
-      axios.post('/npcs', {
-        name: this.state.npcFormName,
-        race: this.state.npcFormRace,
-        demeanor: this.state.npcFormDemeanor
+    axios.post('/npcs', {
+      name: this.state.npcFormName,
+      race: this.state.npcFormRace,
+      demeanor: this.state.npcFormDemeanor
+    })
+      .then((res) => {
+        document.getElementById('nameInput').value = '';
+        document.getElementById('raceInput').value = '';
+        document.getElementById('demeanorInput').value = '';
+        this.setState({
+          npcFormName: '',
+          npcFormRace: '',
+          npcFormDemeanor: ''
+        });
+        this.getAllNPCs();
       })
-        .then((res) => {
-          document.getElementById('nameInput').value = '';
-          document.getElementById('raceInput').value = '';
-          document.getElementById('demeanorInput').value = '';
-          this.setState({
-            npcFormName: '',
-            npcFormRace: '',
-            npcFormDemeanor: ''
-          });
-          this.getAllNPCs();
-        })
-        .catch((err) => {
-          console.log('err saving NPC --client');
-        })
+      .catch((err) => {
+        console.log('err saving NPC --client');
+      })
   }
 
   generateNPC() {
@@ -78,10 +79,10 @@ class App extends React.Component {
 
 
     axios.get(`/name/${raceAPIParam}`)
-    .then((name) => {
-      document.getElementById('nameInput').value = name.data;
-      document.getElementById('raceInput').value = randomRace;
-      document.getElementById('demeanorInput').value = randomDemeanor;
+      .then((name) => {
+        document.getElementById('nameInput').value = name.data;
+        document.getElementById('raceInput').value = randomRace;
+        document.getElementById('demeanorInput').value = randomDemeanor;
         this.setState({
           npcFormName: name.data,
           npcFormRace: randomRace,
@@ -125,7 +126,6 @@ class App extends React.Component {
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
         <AddNewNPCButton />
-        <h2>My NPCs</h2>
         <AddNewNPCForm
           generateNPC={this.generateNPC}
           updateNameForm={this.updateNameForm}
@@ -133,14 +133,16 @@ class App extends React.Component {
           updateDemeanorForm={this.updateDemeanorForm}
           addNPC={this.addNPC}
         /> {/* added temporarily to view*/}
+        <h2>My NPCs</h2>
         <NPCCardContainer npcData={this.state.npcData} />
+        <EditNPCForm
+          updateNameForm={this.updateNameForm}
+          updateRaceForm={this.updateRaceForm}
+          updateDemeanorForm={this.updateDemeanorForm}
+        /> {/* added temporarily to view*/}
       </>
     )
   }
 }
-
-
-
-
 
 export default App;
