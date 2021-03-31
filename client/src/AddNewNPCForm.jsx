@@ -4,18 +4,18 @@ import styled from 'styled-components';
 const AddNewNPCForm = (/* props */) => {
   return (
     <div>
-      <button>Generate NPC</button> {/* will run the main axios call and functions!*/}
+      <button>Generate Random NPC</button> {/* will run the main axios call and functions!*/}
       <label>
         Name:
-      <input type="text"></input>
+      <input type="text" id="nameInput"></input>
       </label>
       <label>
         Race:
-      <input type="text"></input>
+      <input type="text" id="raceInput"></input>
       </label>
       <label>
         Demeanor:
-      <input type="text"></input>
+      <input type="text" id="demeanorInput"></input>
       </label>
     </div>
   )
