@@ -23,7 +23,6 @@ app.get('/name/:name_style', (req, res) => {
     }
   })
   .then((data) => {
-    console.log(data);
     res.status(200).send(data.data.contents.names[0]);
   })
   .catch((err) => {
@@ -44,7 +43,6 @@ app.get('/npcs', (req, res) => {
 });
 
 app.post('/npcs', (req, res) => {
-  console.log(req.body)
   db.addNPC(req.body.name, req.body.race, req.body.demeanor)
   .then((data) => {
     res.status(200).send('NPC added!');
