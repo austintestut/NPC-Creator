@@ -22,7 +22,6 @@ const updateNPC = async (id, name, race, demeanor) => {
 };
 
 const deleteNPC = async (id) => {
-  console.log('hello from db')
   return await sql`DELETE FROM allNPCs WHERE id=${id}`;
 };
 
