@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AddNewNPCButton = ({ toggleAddForm }) => {
+const AddNewNPCButton = ({ showAddForm }) => {
   return (
-    <button onClick={toggleAddForm}>Add New NPC!</button>
+    <button onClick={showAddForm}>Add New NPC!</button>
   )
 }
 

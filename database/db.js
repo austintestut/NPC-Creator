@@ -17,7 +17,12 @@ const addNPC = async (name, race, demeanor) => {
   return await sql`INSERT INTO allNPCs (name, race, demeanor) VALUES (${name}, ${race}, ${demeanor})`;
 };
 
+const updateNPC = async (id, name, race, demeanor) => {
+  return await sql`UPDATE allNPCs SET name=${name}, race=${race}, demeanor=${demeanor} WHERE id=${id}`;
+};
+
 module.exports = {
   getAllNPCs: getAllNPCs,
-  addNPC: addNPC
+  addNPC: addNPC,
+  updateNPC: updateNPC
 }
