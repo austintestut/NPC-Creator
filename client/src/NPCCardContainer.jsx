@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import NPCCard from './NPCCard';
 
-const NPCCardContainer = (/* props */) => {
+const NPCCardContainer = ({ npcData }) => {
   // for each NPC in DB:
   return (
-    <div>
-      <NPCCard />
-    </div>
+npcData.map((npc) => {
+  return (
+      <NPCCard npc={npc}/>
+  )
+})
   )
 };
 
