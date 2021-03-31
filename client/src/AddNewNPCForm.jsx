@@ -5,11 +5,12 @@ const AddNewNPCForm = ({
   generateNPC,
   updateNameForm,
   updateRaceForm,
-  updateDemeanorForm
+  updateDemeanorForm,
+  addNPC
 }) => {
   return (
     <div>
-      <button onClick={generateNPC}>Generate Random NPC</button> {/* will run the main axios call and functions!*/}
+      <button onClick={generateNPC}>Generate Random NPC</button>
       <label>
         Name:
       <input type="text" id="nameInput" onChange={(e) => updateNameForm(e)}></input>
@@ -22,6 +23,7 @@ const AddNewNPCForm = ({
         Demeanor:
       <input type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)}></input>
       </label>
+      <button onClick={addNPC}>Save</button>
     </div>
   )
 }
