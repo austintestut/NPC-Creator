@@ -17,7 +17,8 @@ class App extends React.Component {
       npcFormRace: '',
       npcFormDemeanor: '',
       addFormShowing: false,
-      editFormShowing: false
+      editFormShowing: false,
+      editID: null
     }
     this.getAllNPCs = this.getAllNPCs.bind(this);
     this.generateNPC = this.generateNPC.bind(this);
@@ -25,10 +26,12 @@ class App extends React.Component {
     this.updateRaceForm = this.updateRaceForm.bind(this);
     this.updateDemeanorForm = this.updateDemeanorForm.bind(this);
     this.addNPC = this.addNPC.bind(this);
-    this.toggleAddForm = this.toggleAddForm.bind(this);
-    this.toggleEditForm = this.toggleEditForm.bind(this);
+    this.showAddForm = this.showAddForm.bind(this);
+    this.showEditForm = this.showEditForm.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
     this.cancelAdd = this.cancelAdd.bind(this);
+    this.updateNPC = this.updateNPC.bind(this);
+    this.deleteNPC = this.deleteNPC.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +59,6 @@ class App extends React.Component {
       window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!');
       return;
     }
-
     axios.post('/npcs', {
       name: this.state.npcFormName,
       race: this.state.npcFormRace,
@@ -107,6 +109,48 @@ class App extends React.Component {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  updateNPC() {
+    if (
+      this.state.npcFormName === '' ||
+      this.state.npcFormRace === '' ||
+      this.state.npcFormDemeanor === ''
+    ) {
+      window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!');
+      return;
+    }
+    axios.put('/npcs', {
+      id: this.state.editID,
+      name: this.state.npcFormName,
+      race: this.state.npcFormRace,
+      demeanor: this.state.npcFormDemeanor
+    })
+    .then((response) => {
+      this.setState({
+        editFormShowing: false,
+        npcFormName: '',
+        npcFormRace: '',
+        npcFormDemeanor: ''
+      });
+      this.getAllNPCs();
+    })
+  }
+
+  deleteNPC() {
+    axios.put('/npcs/delete', {
+      id: this.state.editID
+    })
+    .then((response) => {
+      console.log('deleted')
+      this.setState({
+        editFormShowing: false,
+        npcFormName: '',
+        npcFormRace: '',
+        npcFormDemeanor: ''
+      });
+      this.getAllNPCs();
+    })
+  }
+
   updateNameForm(e) {
     this.setState({
       npcFormName: e.target.value
@@ -126,15 +170,16 @@ class App extends React.Component {
     });
   }
 
-  toggleAddForm() {
+  showAddForm() {
     this.setState({
       addFormShowing: true
-    })
+    });
   }
 
-  toggleEditForm(name, race, demeanor) {
+  showEditForm(id, name, race, demeanor) {
     this.setState({
       editFormShowing: true,
+      editID: id,
       npcFormName: name,
       npcFormRace: race,
       npcFormDemeanor: demeanor
@@ -148,6 +193,7 @@ class App extends React.Component {
   cancelEdit() {
     this.setState({
       editFormShowing: false,
+      editID: null,
       npcFormName: '',
       npcFormRace: '',
       npcFormDemeanor: ''
@@ -169,7 +215,7 @@ class App extends React.Component {
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
         <AddNewNPCButton
-        toggleAddForm={this.toggleAddForm}
+          showAddForm={this.showAddForm}
         />
         {this.state.addFormShowing && <AddNewNPCForm
           generateNPC={this.generateNPC}
@@ -178,18 +224,20 @@ class App extends React.Component {
           updateDemeanorForm={this.updateDemeanorForm}
           addNPC={this.addNPC}
           cancelAdd={this.cancelAdd}
-        />} {/* added temporarily to view*/}
+        />}
         <h2>My NPCs</h2>
         <NPCCardContainer
           npcData={this.state.npcData}
-          toggleEditForm={this.toggleEditForm}
+          showEditForm={this.showEditForm}
         />
         {this.state.editFormShowing && <EditNPCForm
           updateNameForm={this.updateNameForm}
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
           cancelEdit={this.cancelEdit}
-        />} {/* added temporarily to view*/}
+          updateNPC={this.updateNPC}
+          deleteNPC={this.deleteNPC}
+        />}
       </>
     )
   }

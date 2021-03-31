@@ -5,10 +5,13 @@ const EditNPCForm = ({
   updateNameForm,
   updateRaceForm,
   updateDemeanorForm,
-  cancelEdit
+  cancelEdit,
+  updateNPC,
+  deleteNPC
 }) => {
   return (
     <div>
+      <button onClick={deleteNPC}>Delete</button>
       <label>
         Name:
       <input type="text" id="editNameInput" onChange={(e) => updateNameForm(e)}></input>
@@ -22,7 +25,7 @@ const EditNPCForm = ({
       <input type="text" id="editDemeanorInput" onChange={(e) => updateDemeanorForm(e)}></input>
       </label>
       <button onClick={cancelEdit}>Cancel</button>
-      <button>Update</button>
+      <button onClick={updateNPC}>Update</button>
     </div>
   )
 }
