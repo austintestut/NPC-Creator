@@ -140,7 +140,6 @@ class App extends React.Component {
       id: this.state.editID
     })
     .then((response) => {
-      console.log('deleted')
       this.setState({
         editFormShowing: false,
         npcFormName: '',
