@@ -1,4 +1,6 @@
-DROP DATABASE IF EXISTS npcs;
+ \c postgres;
+
+ DROP DATABASE IF EXISTS npcs;
 
 CREATE DATABASE npcs;
 
@@ -10,3 +12,6 @@ CREATE TABLE allNPCs (
   race VARCHAR(50),
   demeanor VARCHAR(50)
 );
+
+-- Must be postgres user with SUPERUSER privileges (try: $ su postgres):
+-- psql -d postgres < database/schema.sql
