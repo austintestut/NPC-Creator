@@ -110,6 +110,15 @@ class App extends React.Component {
   }
 
   updateNPC() {
+    if (
+      this.state.npcFormName === '' ||
+      this.state.npcFormRace === '' ||
+      this.state.npcFormDemeanor === ''
+    ) {
+      window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!');
+      return;
+    }
+
     axios.put('/npcs', {
       id: this.state.editID,
       name: this.state.npcFormName,
