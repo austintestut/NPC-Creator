@@ -47,7 +47,6 @@ app.get('/npcs', (req, res) => {
 });
 
 app.post('/npcs', (req, res) => {
-  console.log(req.body.name) ///////////////////////////////////////////////////////////////////////////
   db.addNPC(req.body.name, req.body.race, req.body.demeanor)
   .then((data) => {
     res.status(200).send('NPC added!');
