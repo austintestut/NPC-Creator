@@ -14,6 +14,7 @@ class App extends React.Component {
       npcData: [],
     }
     this.getAllNPCs = this.getAllNPCs.bind(this);
+    this.generateNPC = this.generateNPC.bind(this);
   }
 
   componentDidMount() {
@@ -65,9 +66,9 @@ class App extends React.Component {
       <>
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
-        <AddNewNPCButton></AddNewNPCButton>
+        <AddNewNPCButton />
         <h2>My NPCs</h2>
-        <AddNewNPCForm /> {/* added temporarily to view*/}
+        <AddNewNPCForm generateNPC={this.generateNPC}/> {/* added temporarily to view*/}
         <NPCCardContainer npcData={this.state.npcData}/>
       </>
     )

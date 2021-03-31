@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AddNewNPCForm = (/* props */) => {
+const AddNewNPCForm = ({ generateNPC }) => {
   return (
     <div>
-      <button>Generate Random NPC</button> {/* will run the main axios call and functions!*/}
+      <button onClick={generateNPC}>Generate Random NPC</button> {/* will run the main axios call and functions!*/}
       <label>
         Name:
       <input type="text" id="nameInput"></input>
