@@ -30,6 +30,7 @@ class App extends React.Component {
     this.showEditForm = this.showEditForm.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
     this.cancelAdd = this.cancelAdd.bind(this);
+    this.updateNPC = this.updateNPC.bind(this);
   }
 
   componentDidMount() {
@@ -108,6 +109,24 @@ class App extends React.Component {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  updateNPC() {
+    axios.put('/npcs', {
+      id: this.state.editID,
+      name: this.state.npcFormName,
+      race: this.state.npcFormRace,
+      demeanor: this.state.npcFormDemeanor
+    })
+    .then((response) => {
+      this.setState({
+        editFormShowing: false,
+        npcFormName: '',
+        npcFormRace: '',
+        npcFormDemeanor: ''
+      });
+      this.getAllNPCs();
+    })
+  }
+
   updateNameForm(e) {
     this.setState({
       npcFormName: e.target.value
@@ -172,7 +191,7 @@ class App extends React.Component {
         <h2>NPC Creator</h2>
         <h4><i>Stop naming your NPCs Bob!</i></h4>
         <AddNewNPCButton
-        showAddForm={this.showAddForm}
+          showAddForm={this.showAddForm}
         />
         {this.state.addFormShowing && <AddNewNPCForm
           generateNPC={this.generateNPC}
@@ -192,6 +211,7 @@ class App extends React.Component {
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
           cancelEdit={this.cancelEdit}
+          updateNPC={this.updateNPC}
         />}
       </>
     )
