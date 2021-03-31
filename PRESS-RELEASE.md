@@ -1,27 +1,25 @@
 ### NPC Creator
-## Heading
-Name the product in a way the reader (i.e. your target customers) will understand.
 
 ## Sub-Heading
-Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+An NPC generation and storage application for RPG Game Masters
 
 ## Summary
-Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+NPC-Creator allows the user to generate, save, and update randomized Non-Player Characters.  It is perfect for pulling a new persoonality and name out of thin air, then keeping track of the character moving forward.
 
 ## Problem
-Describe the problem your product solves.
+Thinking on the fly is hard.  But as an RPG Game Master, this skill is necessary.  Coming up with NPCs quickly during a game is essential to the flow, feel, and immersion of the game.
 
 ## Solution
-Describe how your product elegantly solves the problem.
+NPC-Creator brings the creation of a new fantasy character to the fingertips of everyone, allowing them to be the quick-thinking GM they always dreamed of being.  With just a few simple clicks, users can generate, save, and edit custom NPCs quickly, keeping the game immersive and exciting for the players.
 
 ## Quote from You
-A quote from a spokesperson in your company.
+"Stop naming your NPCs Bob!  Now you can come up with real fantasy names on the fly to keep the story alive!" - Austin
 
 ## How to Get Started
-Describe how easy it is to get started.
+Navigate to NPC-Creator and click "Add New NPC."  Then click the Generate button to generate a new randomized NPC, edit if desired, and click save!
 
 ## Customer Quote
-Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+"I was finally able to stop naming all my NPCs Bob!" - Bob
 
 ## Closing and Call to Action
-Wrap it up and give pointers where the reader should go next.
+Use NPC-Creator for your next game to keep the play moving and everyone entertained!
