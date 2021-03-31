@@ -23,7 +23,11 @@ app.get('/name/:name_style', (req, res) => {
     }
   })
   .then((data) => {
-    res.status(200).send(data.data.contents.names[0]);
+    let npcName = data.data.contents.names[0]
+    if (req.params.name_style === 'dragon') {
+      npcName = npcName.substring(0, npcName.indexOf(','));
+    }
+    res.status(200).send(npcName);
   })
   .catch((err) => {
     console.log(err);
@@ -43,6 +47,7 @@ app.get('/npcs', (req, res) => {
 });
 
 app.post('/npcs', (req, res) => {
+  console.log(req.body.name) ///////////////////////////////////////////////////////////////////////////
   db.addNPC(req.body.name, req.body.race, req.body.demeanor)
   .then((data) => {
     res.status(200).send('NPC added!');
