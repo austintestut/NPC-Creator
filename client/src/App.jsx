@@ -12,9 +12,15 @@ class App extends React.Component {
     super();
     this.state = {
       npcData: [],
+      npcFormName: '',
+      npcFormRace: '',
+      npcFormDemeanor: ''
     }
     this.getAllNPCs = this.getAllNPCs.bind(this);
     this.generateNPC = this.generateNPC.bind(this);
+    this.updateNameForm = this.updateNameForm.bind(this);
+    this.updateRaceForm = this.updateRaceForm.bind(this);
+    this.updateDemeanorForm = this.updateDemeanorForm.bind(this);
   }
 
   componentDidMount() {
@@ -44,14 +50,19 @@ class App extends React.Component {
     let randomDemeanor = helpers.demeanors[this.randomNumberGenerator(0, 39)];
 
     axios.get(`/name/${raceAPIParam}`)
-    .then((name) => {
-      document.getElementById('nameInput').value = name.data;
-      document.getElementById('raceInput').value = randomRace;
-      document.getElementById('demeanorInput').value = randomDemeanor;
-    })
-    .catch((err) => {
-      console.log('err generating NPC');
-    })
+      .then((name) => {
+        document.getElementById('nameInput').value = name.data;
+        document.getElementById('raceInput').value = randomRace;
+        document.getElementById('demeanorInput').value = randomDemeanor;
+        this.setState({
+          npcFormName: name.data,
+          npcFormRace: randomRace,
+          npcFormDemeanor: randomDemeanor
+        })
+      })
+      .catch((err) => {
+        console.log('err generating NPC');
+      })
   }
 
   randomNumberGenerator(min, max) {
@@ -61,6 +72,25 @@ class App extends React.Component {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  updateNameForm(e) {
+    this.setState({
+      npcFormName: e.target.value
+    });
+  }
+
+  updateRaceForm(e) {
+    this.setState({
+      npcFormRace: e.target.value
+    });
+  }
+
+  updateDemeanorForm(e) {
+    console.log('hello from demeanor')
+    this.setState({
+      npcFormDemeanor: e.target.value
+    });
+  }
+
   render() {
     return (
       <>
@@ -68,8 +98,13 @@ class App extends React.Component {
         <h4><i>Stop naming your NPCs Bob!</i></h4>
         <AddNewNPCButton />
         <h2>My NPCs</h2>
-        <AddNewNPCForm generateNPC={this.generateNPC}/> {/* added temporarily to view*/}
-        <NPCCardContainer npcData={this.state.npcData}/>
+        <AddNewNPCForm
+          generateNPC={this.generateNPC}
+          updateNameForm={this.updateNameForm}
+          updateRaceForm={this.updateRaceForm}
+          updateDemeanorForm={this.updateDemeanorForm}
+        /> {/* added temporarily to view*/}
+        <NPCCardContainer npcData={this.state.npcData} />
       </>
     )
   }
