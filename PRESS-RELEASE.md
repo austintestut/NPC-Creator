@@ -1,7 +1,6 @@
 ### NPC Creator
 
-## Sub-Heading
-An NPC generation and storage application for RPG Game Masters
+## An NPC generation and storage application for RPG Game Masters
 
 ## Summary
 NPC-Creator allows the user to generate, save, and update randomized Non-Player Characters.  It is perfect for pulling a new persoonality and name out of thin air, then keeping track of the character moving forward.
@@ -13,13 +12,13 @@ Thinking on the fly is hard.  But as an RPG Game Master, this skill is necessary
 NPC-Creator brings the creation of a new fantasy character to the fingertips of everyone, allowing them to be the quick-thinking GM they always dreamed of being.  With just a few simple clicks, users can generate, save, and edit custom NPCs quickly, keeping the game immersive and exciting for the players.
 
 ## Quote from You
-"Stop naming your NPCs Bob!  Now you can come up with real fantasy names on the fly to keep the story alive!" - Austin
+"Stop naming your NPCs Bob!  Now you can come up with real fantasy names on the fly to keep the story alive!" -Austin
 
 ## How to Get Started
-Navigate to NPC-Creator and click "Add New NPC."  Then click the Generate button to generate a new randomized NPC, edit if desired, and click save!
+Navigate to NPC-Creator and click "Add New NPC."  Then click the Generate button to generate a new randomized NPC, edit if desired, and click save!  Once saved, all NPCs can be viewed and edited by clicking on them.
 
 ## Customer Quote
-"I was finally able to stop naming all my NPCs Bob!" - Bob
+"I was finally able to stop naming all my NPCs Bob!" -Bob
 
 ## Closing and Call to Action
 Use NPC-Creator for your next game to keep the play moving and everyone entertained!
