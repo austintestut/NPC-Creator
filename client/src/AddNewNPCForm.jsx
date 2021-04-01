@@ -13,30 +13,31 @@ const AddNewNPCForm = ({
   return (
     <StyledFormContainer>
       <StyledForm>
+        <h3> ADD NEW NPC </h3>
         <div>
           <button onClick={generateNPC}>Generate Random NPC</button>
         </div>
-        <div>
+        <StyledInnerTextboxes>
           <label>
-            Name:{' '}
-      <StyledInput type="text" id="nameInput" onChange={(e) => updateNameForm(e)} />
+            Name:<br />
+            <StyledInput type="text" id="nameInput" onChange={(e) => updateNameForm(e)} />
           </label>
           {'  '}
           <label>
-            Race:{' '}
-      <StyledInput type="text" id="raceInput" onChange={(e) => updateRaceForm(e)} />
+            Race:<br />
+            <StyledInput type="text" id="raceInput" onChange={(e) => updateRaceForm(e)} />
           </label>
           {'  '}
           <label>
-            Demeanor:{' '}
-      <StyledInput type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)} />
+            Demeanor:<br />
+            <StyledInput type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)} />
           </label>
           {'  '}
           <label>
-            Quality:{' '}
-      <StyledInput type="text" id="qualityInput" onChange={(e) => updateQualityForm(e)} />
+            Quality:<br />
+            <StyledInput type="text" id="qualityInput" onChange={(e) => updateQualityForm(e)} />
           </label>
-        </div>
+        </StyledInnerTextboxes>
         <div>
           <button onClick={cancelAdd}>Cancel</button>
           {'  '}
@@ -73,7 +74,14 @@ const StyledForm = styled.div`
   font-size: 25px;
 `;
 
+const StyledInnerTextboxes = styled.div`
+display: grid;
+grid-template-rows:  1fr 1fr 1fr 1fr auto;
+`;
+
 const StyledInput = styled.input`
-height: auto;
+height: 25px;
+width: 400px;
 font-size: 15px;
+font-family: Calibri(body);
 `;
