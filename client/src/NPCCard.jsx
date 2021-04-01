@@ -32,6 +32,7 @@ const StyledCard = styled.div`
   width: 300px;
   margin: 10px;
   padding: 5px;
+  overflow: hidden;
 `;
 const StyledTitle = styled.div`
 font-weight: 900;

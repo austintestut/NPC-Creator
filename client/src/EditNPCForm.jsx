@@ -16,32 +16,33 @@ const EditNPCForm = ({
         <div>
           <button onClick={deleteNPC}>Delete</button>
         </div>
-        <div>
+        <StyledInnerTextboxes>
           <label>
-            Name:{' '}
+            Name:<br />
             <StyledInput type="text" id="editNameInput" onChange={(e) => updateNameForm(e)} />
           </label>
           {'  '}
           <label>
-            Race:{' '}
+            Race:<br />
             <StyledInput type="text" id="editRaceInput" onChange={(e) => updateRaceForm(e)} />
           </label>
           {'  '}
           <label>
-            Demeanor:{' '}
+            Demeanor:<br />
             <StyledInput type="text" id="editDemeanorInput" onChange={(e) => updateDemeanorForm(e)} />
           </label>
           {'  '}
           <label>
-            Quality:{' '}
+            Quality:<br />
             <StyledInput type="text" id="editQualityInput" onChange={(e) => updateDemeanorForm(e)} />
           </label>
           {'  '}
           <label>
-            Notes:{' '}
-            <StyledInput type="text" id="editNotesInput" onChange={(e) => updateNotesForm(e)} />
+            Notes:<br />
+            <StyledNotes type="text" id="editNotesInput" onChange={(e) => updateNotesForm(e)} />
           </label>
-        </div>
+
+        </StyledInnerTextboxes>
         <div>
           <button onClick={cancelEdit}>Cancel</button>
           <button onClick={updateNPC}>Update</button>
@@ -77,7 +78,19 @@ const StyledForm = styled.div`
   font-size: 25px;
 `;
 
+const StyledInnerTextboxes = styled.div`
+display: grid;
+grid-template-rows:  1fr 1fr 1fr 1fr auto;
+`;
+
 const StyledInput = styled.input`
 height: 25px;
+width: 400px;
 font-size: 15px;
+font-family: Calibri(body);
+`;
+
+const StyledNotes = styled.textarea`
+font-size: 15px;
+width: 400px;
 `;
