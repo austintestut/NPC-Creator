@@ -65,8 +65,50 @@ const demeanors = [
   'Talkative'
 ]
 
+const qualities = [
+  `Doesn't know how to read`,
+  `Drools constantly`,
+  `Cross-eyed`,
+  `Missing a hand`,
+  `Has a peg-leg`,
+  `Somehow always has the hiccups`,
+  `Walks with a limp`,
+  `Says everything like it’s a question`,
+  `Extremely short for their race`,
+  `Extremely tall for their race`,
+  `Has a large mole on their cheek`,
+  `Has a large scar across their face`,
+  `Wears unusual glasses`,
+  `Has braces and headgear`,
+  `Has large feet`,
+  `Bites their nails`,
+  `Constantly fidgeting and can’t sit still`,
+  `Many tattoos or piercings`,
+  `Constantly sniffling/blowing their nose`,
+  `Talks very loudly`,
+  `Talks very quietly`,
+  `Terrible breath`,
+  `Gets sweaty easily (especially when nervous)`,
+  `Unusually hairy arms and legs`,
+  `Very long painted nails`,
+  `Always wears a faceful of makeup`,
+  `Stumbles over their words a lot`,
+  `Often tucks their hair behind their ears`,
+  `Constantly chews a cattail`,
+  `Always picking their teeth`,
+  `Smokes and has a raspy voice`,
+  `Breathes heavily`,
+  `Is extremely muscular`,
+  `Is very pale for their race`,
+  `Walks very slowly or quickly`,
+  `Left-handed`,
+  `Ambidextrous`,
+  `Constantly scratching themselves`
+]
+
 module.exports = {
   races: races,
   raceAPIStyle: raceAPIStyle,
-  demeanors: demeanors
+  demeanors: demeanors,
+  qualities: qualities
 }

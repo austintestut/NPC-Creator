@@ -7,7 +7,8 @@ const EditNPCForm = ({
   updateDemeanorForm,
   cancelEdit,
   updateNPC,
-  deleteNPC
+  deleteNPC,
+  updateNotesForm
 }) => {
   return (
     <StyledFormContainer>
@@ -17,16 +18,28 @@ const EditNPCForm = ({
         </div>
         <div>
           <label>
-            Name:
-      <input type="text" id="editNameInput" onChange={(e) => updateNameForm(e)}></input>
+            Name:{' '}
+            <StyledInput type="text" id="editNameInput" onChange={(e) => updateNameForm(e)} />
           </label>
+          {'  '}
           <label>
-            Race:
-      <input type="text" id="editRaceInput" onChange={(e) => updateRaceForm(e)}></input>
+            Race:{' '}
+            <StyledInput type="text" id="editRaceInput" onChange={(e) => updateRaceForm(e)} />
           </label>
+          {'  '}
           <label>
-            Demeanor:
-      <input type="text" id="editDemeanorInput" onChange={(e) => updateDemeanorForm(e)}></input>
+            Demeanor:{' '}
+            <StyledInput type="text" id="editDemeanorInput" onChange={(e) => updateDemeanorForm(e)} />
+          </label>
+          {'  '}
+          <label>
+            Quality:{' '}
+            <StyledInput type="text" id="editQualityInput" onChange={(e) => updateDemeanorForm(e)} />
+          </label>
+          {'  '}
+          <label>
+            Notes:{' '}
+            <StyledInput type="text" id="editNotesInput" onChange={(e) => updateNotesForm(e)} />
           </label>
         </div>
         <div>
@@ -62,4 +75,9 @@ const StyledForm = styled.div`
   display: grid;
   grid-template-rows: auto auto auto;
   font-size: 25px;
+`;
+
+const StyledInput = styled.input`
+height: 25px;
+font-size: 15px;
 `;

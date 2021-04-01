@@ -6,8 +6,9 @@ const AddNewNPCForm = ({
   updateNameForm,
   updateRaceForm,
   updateDemeanorForm,
+  updateQualityForm,
   addNPC,
-  cancelAdd
+  cancelAdd,
 }) => {
   return (
     <StyledFormContainer>
@@ -17,16 +18,23 @@ const AddNewNPCForm = ({
         </div>
         <div>
           <label>
-            Name:
-      <input type="text" id="nameInput" onChange={(e) => updateNameForm(e)}></input>
+            Name:{' '}
+      <StyledInput type="text" id="nameInput" onChange={(e) => updateNameForm(e)} />
           </label>
+          {'  '}
           <label>
-            Race:
-      <input type="text" id="raceInput" onChange={(e) => updateRaceForm(e)}></input>
+            Race:{' '}
+      <StyledInput type="text" id="raceInput" onChange={(e) => updateRaceForm(e)} />
           </label>
+          {'  '}
           <label>
-            Demeanor:
-      <input type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)}></input>
+            Demeanor:{' '}
+      <StyledInput type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)} />
+          </label>
+          {'  '}
+          <label>
+            Quality:{' '}
+      <StyledInput type="text" id="qualityInput" onChange={(e) => updateQualityForm(e)} />
           </label>
         </div>
         <div>
@@ -63,4 +71,9 @@ const StyledForm = styled.div`
   display: grid;
   grid-template-rows: auto auto auto;
   font-size: 25px;
+`;
+
+const StyledInput = styled.input`
+height: auto;
+font-size: 15px;
 `;
