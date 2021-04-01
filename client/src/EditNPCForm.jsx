@@ -13,6 +13,7 @@ const EditNPCForm = ({
   return (
     <StyledFormContainer>
       <StyledForm>
+      <h3> EDIT NPC </h3>
         <div>
           <button onClick={deleteNPC}>Delete</button>
         </div>
