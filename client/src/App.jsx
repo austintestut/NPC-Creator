@@ -16,6 +16,8 @@ class App extends React.Component {
       npcFormName: '',
       npcFormRace: '',
       npcFormDemeanor: '',
+      npcFormQuality: '',
+      npcFormNotes: '',
       addFormShowing: false,
       editFormShowing: false,
       editID: null
@@ -32,6 +34,8 @@ class App extends React.Component {
     this.cancelAdd = this.cancelAdd.bind(this);
     this.updateNPC = this.updateNPC.bind(this);
     this.deleteNPC = this.deleteNPC.bind(this);
+    this.updateNotesForm = this.updateNotesForm.bind(this);
+    this.updateQualityForm = this.updateQualityForm.bind(this);
   }
 
   componentDidMount() {
@@ -56,18 +60,20 @@ class App extends React.Component {
       this.state.npcFormRace === '' ||
       this.state.npcFormDemeanor === ''
     ) {
-      window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!');
+      window.alert('Cannot submit blank NPC!\nThat defeats the purpose of this app!\n(Quality can be blank)');
       return;
     }
     axios.post('/npcs', {
       name: this.state.npcFormName,
       race: this.state.npcFormRace,
-      demeanor: this.state.npcFormDemeanor
+      demeanor: this.state.npcFormDemeanor,
+      quality: this.state.npcFormQuality
     })
       .then((res) => {
         document.getElementById('nameInput').value = '';
         document.getElementById('raceInput').value = '';
         document.getElementById('demeanorInput').value = '';
+        document.getElementById('qualityInput').value = '';
         this.setState({
           npcFormName: '',
           npcFormRace: '',
@@ -84,17 +90,18 @@ class App extends React.Component {
     let randomRace = helpers.races[this.randomNumberGenerator(0, 8)];
     let raceAPIParam = helpers.raceAPIStyle[randomRace];
     let randomDemeanor = helpers.demeanors[this.randomNumberGenerator(0, 39)];
-
-
+    let randomQuality = helpers.qualities[this.randomNumberGenerator(0, 37)];
     axios.get(`/name/${raceAPIParam}`)
       .then((name) => {
         document.getElementById('nameInput').value = name.data;
         document.getElementById('raceInput').value = randomRace;
         document.getElementById('demeanorInput').value = randomDemeanor;
+        document.getElementById('qualityInput').value = randomQuality;
         this.setState({
           npcFormName: name.data,
           npcFormRace: randomRace,
-          npcFormDemeanor: randomDemeanor
+          npcFormDemeanor: randomDemeanor,
+          npcFormQuality: randomQuality
         })
       })
       .catch((err) => {
@@ -122,14 +129,18 @@ class App extends React.Component {
       id: this.state.editID,
       name: this.state.npcFormName,
       race: this.state.npcFormRace,
-      demeanor: this.state.npcFormDemeanor
+      demeanor: this.state.npcFormDemeanor,
+      notes: this.state.npcFormNotes,
+      quality: this.state.npcFormQuality
     })
     .then((response) => {
       this.setState({
         editFormShowing: false,
         npcFormName: '',
         npcFormRace: '',
-        npcFormDemeanor: ''
+        npcFormDemeanor: '',
+        npcFormNotes: '',
+        npcFormQuality: ''
       });
       this.getAllNPCs();
     })
@@ -140,7 +151,6 @@ class App extends React.Component {
       id: this.state.editID
     })
     .then((response) => {
-      console.log('deleted')
       this.setState({
         editFormShowing: false,
         npcFormName: '',
@@ -164,9 +174,20 @@ class App extends React.Component {
   }
 
   updateDemeanorForm(e) {
-    console.log('hello from demeanor')
     this.setState({
       npcFormDemeanor: e.target.value
+    });
+  }
+
+  updateNotesForm(e) {
+    this.setState({
+      npcFormNotes: e.target.value
+    });
+  }
+
+  updateQualityForm(e) {
+    this.setState({
+      npcFormQuality: e.target.value
     });
   }
 
@@ -176,17 +197,21 @@ class App extends React.Component {
     });
   }
 
-  showEditForm(id, name, race, demeanor) {
+  showEditForm(id, name, race, demeanor, notes, quality) {
     this.setState({
       editFormShowing: true,
       editID: id,
       npcFormName: name,
       npcFormRace: race,
-      npcFormDemeanor: demeanor
+      npcFormDemeanor: demeanor,
+      npcFormNotes: notes,
+      npcFormQuality: quality
     }, () => {
       document.getElementById('editNameInput').value = name;
       document.getElementById('editRaceInput').value = race;
       document.getElementById('editDemeanorInput').value = demeanor;
+      document.getElementById('editNotesInput').value = notes;
+      document.getElementById('editQualityInput').value = quality;
     })
   }
 
@@ -222,6 +247,7 @@ class App extends React.Component {
           updateNameForm={this.updateNameForm}
           updateRaceForm={this.updateRaceForm}
           updateDemeanorForm={this.updateDemeanorForm}
+          updateQualityForm={this.updateQualityForm}
           addNPC={this.addNPC}
           cancelAdd={this.cancelAdd}
         />}
@@ -237,6 +263,7 @@ class App extends React.Component {
           cancelEdit={this.cancelEdit}
           updateNPC={this.updateNPC}
           deleteNPC={this.deleteNPC}
+          updateNotesForm={this.updateNotesForm}
         />}
       </>
     )

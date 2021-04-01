@@ -47,7 +47,7 @@ app.get('/npcs', (req, res) => {
 });
 
 app.post('/npcs', (req, res) => {
-  db.addNPC(req.body.name, req.body.race, req.body.demeanor)
+  db.addNPC(req.body.name, req.body.race, req.body.demeanor, req.body.quality)
   .then((data) => {
     res.status(201).send('NPC added!');
   })
@@ -58,7 +58,7 @@ app.post('/npcs', (req, res) => {
 });
 
 app.put('/npcs', (req, res) => {
-  db.updateNPC(req.body.id, req.body.name, req.body.race, req.body.demeanor)
+  db.updateNPC(req.body.id, req.body.name, req.body.race, req.body.demeanor, req.body.notes, req.body.quality)
   .then((response) => {
     res.status(201).send('NPC updated');
   })

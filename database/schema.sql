@@ -10,7 +10,9 @@ CREATE TABLE allNPCs (
   id SERIAL,
   name VARCHAR(50),
   race VARCHAR(50),
-  demeanor VARCHAR(50)
+  demeanor VARCHAR(50),
+  quality VARCHAR,
+  notes VARCHAR
 );
 
 -- Must be postgres user with SUPERUSER privileges (try: $ su postgres):

@@ -3,12 +3,37 @@ import styled from 'styled-components';
 
 const NPCCard = ({ npc, showEditForm }) => {
   return (
-    <div onClick={() => showEditForm(npc.id, npc.name, npc.race, npc.demeanor)}>
-      <div>Name: {npc.name}</div>
-      <div>Race: {npc.race}</div>
-      <div>Demeanor: {npc.demeanor}</div>
-    </div>
+    <StyledCard onClick={() => showEditForm(npc.id, npc.name, npc.race, npc.demeanor, npc.notes, npc.quality)}>
+      <StyledTitle>Name: </StyledTitle>
+      <div>{npc.name}</div>
+      <br />
+      <StyledTitle>Race: </StyledTitle>
+      <div>{npc.race}</div>
+      <br />
+      <StyledTitle>Demeanor: </StyledTitle>
+      <div>{npc.demeanor}</div>
+      <br />
+      <StyledTitle>Quality: </StyledTitle>
+      <div>{npc.quality}</div>
+      <br />
+      <StyledTitle>Notes: </StyledTitle>
+      <div>{npc.notes}</div>
+    </StyledCard>
   )
 };
 
 export default NPCCard;
+
+const StyledCard = styled.div`
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  padding: 5px;
+  overflow: hidden;
+`;
+const StyledTitle = styled.div`
+font-weight: 900;
+`;

@@ -13,16 +13,15 @@ const getAllNPCs = async () => {
   return await sql`SELECT * FROM allNPCs`;
 };
 
-const addNPC = async (name, race, demeanor) => {
-  return await sql`INSERT INTO allNPCs (name, race, demeanor) VALUES (${name}, ${race}, ${demeanor})`;
+const addNPC = async (name, race, demeanor, quality) => {
+  return await sql`INSERT INTO allNPCs (name, race, demeanor, notes, quality) VALUES (${name}, ${race}, ${demeanor}, '', ${quality})`;
 };
 
-const updateNPC = async (id, name, race, demeanor) => {
-  return await sql`UPDATE allNPCs SET name=${name}, race=${race}, demeanor=${demeanor} WHERE id=${id}`;
+const updateNPC = async (id, name, race, demeanor, notes, quality) => {
+  return await sql`UPDATE allNPCs SET name=${name}, race=${race}, demeanor=${demeanor}, notes=${notes}, quality=${quality} WHERE id=${id}`;
 };
 
 const deleteNPC = async (id) => {
-  console.log('hello from db')
   return await sql`DELETE FROM allNPCs WHERE id=${id}`;
 };
 
