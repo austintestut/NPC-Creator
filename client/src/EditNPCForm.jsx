@@ -2,13 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const EditNPCForm = ({
-  updateNameForm,
-  updateRaceForm,
-  updateDemeanorForm,
   cancelEdit,
   updateNPC,
-  deleteNPC,
-  updateNotesForm
+  deleteNPC
 }) => {
   return (
     <StyledFormContainer>
@@ -20,27 +16,27 @@ const EditNPCForm = ({
         <StyledInnerTextboxes>
           <label>
             Name:<br />
-            <StyledInput type="text" id="editNameInput" onChange={(e) => updateNameForm(e)} />
+            <StyledInput type="text" id="editNameInput" />
           </label>
           {'  '}
           <label>
             Race:<br />
-            <StyledInput type="text" id="editRaceInput" onChange={(e) => updateRaceForm(e)} />
+            <StyledInput type="text" id="editRaceInput" />
           </label>
           {'  '}
           <label>
             Demeanor:<br />
-            <StyledInput type="text" id="editDemeanorInput" onChange={(e) => updateDemeanorForm(e)} />
+            <StyledInput type="text" id="editDemeanorInput" />
           </label>
           {'  '}
           <label>
             Quality:<br />
-            <StyledInput type="text" id="editQualityInput" onChange={(e) => updateDemeanorForm(e)} />
+            <StyledInput type="text" id="editQualityInput" />
           </label>
           {'  '}
           <label>
             Notes:<br />
-            <StyledNotes type="text" id="editNotesInput" onChange={(e) => updateNotesForm(e)} />
+            <StyledNotes type="text" id="editNotesInput" />
           </label>
 
         </StyledInnerTextboxes>

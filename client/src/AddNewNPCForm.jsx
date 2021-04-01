@@ -3,12 +3,8 @@ import styled from 'styled-components';
 
 const AddNewNPCForm = ({
   generateNPC,
-  updateNameForm,
-  updateRaceForm,
-  updateDemeanorForm,
-  updateQualityForm,
   addNPC,
-  cancelAdd,
+  cancelAdd
 }) => {
   return (
     <StyledFormContainer>
@@ -20,22 +16,22 @@ const AddNewNPCForm = ({
         <StyledInnerTextboxes>
           <label>
             Name:<br />
-            <StyledInput type="text" id="nameInput" onChange={(e) => updateNameForm(e)} />
+            <StyledInput type="text" id="nameInput" />
           </label>
           {'  '}
           <label>
             Race:<br />
-            <StyledInput type="text" id="raceInput" onChange={(e) => updateRaceForm(e)} />
+            <StyledInput type="text" id="raceInput" />
           </label>
           {'  '}
           <label>
             Demeanor:<br />
-            <StyledInput type="text" id="demeanorInput" onChange={(e) => updateDemeanorForm(e)} />
+            <StyledInput type="text" id="demeanorInput" />
           </label>
           {'  '}
           <label>
             Quality:<br />
-            <StyledInput type="text" id="qualityInput" onChange={(e) => updateQualityForm(e)} />
+            <StyledInput type="text" id="qualityInput" />
           </label>
         </StyledInnerTextboxes>
         <div>
