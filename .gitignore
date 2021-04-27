@@ -7,9 +7,6 @@ config.js
 # webpack compilation
 public/app.js
 
-# Name data for switch from API
-nameData.js
-
 # Logs
 logs
 *.log
