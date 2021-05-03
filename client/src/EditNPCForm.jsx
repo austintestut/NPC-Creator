@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import xButton from '../../public/images/xicon.png';
 
 const EditNPCForm = ({
   cancelEdit,
@@ -9,6 +10,7 @@ const EditNPCForm = ({
   return (
     <StyledFormContainer>
       <StyledForm>
+      <StyledX src={xButton}/>
       <h3> EDIT NPC </h3>
         <div>
           <button onClick={deleteNPC}>Delete</button>
@@ -90,4 +92,12 @@ font-family: Calibri(body);
 const StyledNotes = styled.textarea`
 font-size: 15px;
 width: 400px;
+`;
+
+const StyledX = styled.img`
+position: absolute;
+top: 2%;
+right: 2%;
+width: 50px;
+height: 50px;
 `;
