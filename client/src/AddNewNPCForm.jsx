@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import xButton from '../../public/images/xicon.png';
 
 const AddNewNPCForm = ({
   generateNPC,
@@ -9,6 +10,7 @@ const AddNewNPCForm = ({
   return (
     <StyledFormContainer>
       <StyledForm>
+        <StyledX src={xButton} />
         <h3> ADD NEW NPC </h3>
         <div>
           <button onClick={generateNPC}>Generate Random NPC</button>
@@ -80,4 +82,12 @@ height: 25px;
 width: 400px;
 font-size: 15px;
 font-family: Calibri(body);
+`;
+
+const StyledX = styled.img`
+position: absolute;
+top: 2%;
+right: 2%;
+width: 50px;
+height: 50px;
 `;
