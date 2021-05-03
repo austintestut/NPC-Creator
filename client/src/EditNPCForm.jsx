@@ -10,7 +10,7 @@ const EditNPCForm = ({
   return (
     <StyledFormContainer>
       <StyledForm>
-      <StyledX src={xButton}/>
+      <StyledX src={xButton} onClick={cancelEdit}/>
       <h3> EDIT NPC </h3>
         <div>
           <button onClick={deleteNPC}>Delete</button>
@@ -100,4 +100,8 @@ top: 2%;
 right: 2%;
 width: 50px;
 height: 50px;
+&:hover {
+  cursor: pointer;
+  filter: opacity(50%);
+}
 `;

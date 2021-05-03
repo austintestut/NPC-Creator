@@ -10,7 +10,7 @@ const AddNewNPCForm = ({
   return (
     <StyledFormContainer>
       <StyledForm>
-        <StyledX src={xButton} />
+        <StyledX src={xButton} onClick={cancelAdd}/>
         <h3> ADD NEW NPC </h3>
         <div>
           <button onClick={generateNPC}>Generate Random NPC</button>
@@ -90,4 +90,8 @@ top: 2%;
 right: 2%;
 width: 50px;
 height: 50px;
+&:hover {
+  cursor: pointer;
+  filter: opacity(50%);
+}
 `;

@@ -1,0 +1,22 @@
+:root {
+  --main: #1F7C7C;
+  --secondary: #cbcece;
+}
+
+* {
+  font-family: Tahoma, Helvetica, sans-serif;
+}
+
+button {
+  border: 2px;
+  border-color: var(--secondary);
+  border-radius: 5%;
+  color: white;
+  background-color: var(--main);
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--secondary);
+  color: var(--main);
+}
