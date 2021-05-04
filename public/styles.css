@@ -1,5 +1,5 @@
 :root {
-  --main: #1F7C7C;
+  --main: #1f7c7c;
   --secondary: #cbcece;
 }
 
@@ -19,4 +19,68 @@ button:hover {
   cursor: pointer;
   background-color: var(--secondary);
   color: var(--main);
+}
+
+.form-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+.styled-form {
+  position: relative;
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  background-color: white;
+  width: auto;
+  padding: 5%;
+  margin: 10% 10% 10% 10%;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  font-size: 25px;
+}
+
+.form-boxes {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr auto;
+}
+
+.form-input {
+  height: 25px;
+  width: 400px;
+  font-size: 15px;
+  font-family: Calibri(body);
+}
+
+.form-x {
+  position: absolute;
+top: 2%;
+right: 2%;
+width: 50px;
+height: 50px;
+}
+
+.form-x:hover {
+  cursor: pointer;
+  filter: opacity(50%);
+}
+
+.card {
+  border: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  height: 300px;
+  width: 300px;
+  margin: 10px;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.card-title {
+  font-weight: 900;
 }

@@ -1,39 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
 
 const NPCCard = ({ npc, showEditForm }) => {
   return (
-    <StyledCard onClick={() => showEditForm(npc.id, npc.name, npc.race, npc.demeanor, npc.notes, npc.quality)}>
-      <StyledTitle>Name: </StyledTitle>
+    <div className="card" onClick={() => showEditForm(npc.id, npc.name, npc.race, npc.demeanor, npc.notes, npc.quality)}>
+      <div className="card-title">Name: </div>
       <div>{npc.name}</div>
       <br />
-      <StyledTitle>Race: </StyledTitle>
+      <div className="card-title">Race: </div>
       <div>{npc.race}</div>
       <br />
-      <StyledTitle>Demeanor: </StyledTitle>
+      <div className="card-title">Demeanor: </div>
       <div>{npc.demeanor}</div>
       <br />
-      <StyledTitle>Quality: </StyledTitle>
+      <div className="card-title">Quality: </div>
       <div>{npc.quality}</div>
       <br />
-      <StyledTitle>Notes: </StyledTitle>
+      <div className="card-title">Notes: </div>
       <div>{npc.notes}</div>
-    </StyledCard>
+    </div>
   )
 };
 
 export default NPCCard;
-
-const StyledCard = styled.div`
-  border: solid;
-  border-width: 2px;
-  border-radius: 5px;
-  height: 300px;
-  width: 300px;
-  margin: 10px;
-  padding: 5px;
-  overflow: hidden;
-`;
-const StyledTitle = styled.div`
-font-weight: 900;
-`;
