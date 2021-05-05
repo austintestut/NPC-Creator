@@ -43,6 +43,7 @@ const EditNPCForm = ({
         </div>
         <div>
           <button onClick={cancelEdit}>Cancel</button>
+          {'  '}
           <button onClick={updateNPC}>Update</button>
         </div>
       </div>
