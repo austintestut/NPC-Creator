@@ -1,6 +1,7 @@
 :root {
   --main: #1f7c7c;
   --secondary: #cbcece;
+  --tertiary: #e9e9e9f3;
 }
 
 * {
@@ -74,13 +75,28 @@ height: 50px;
   border: solid;
   border-width: 2px;
   border-radius: 5px;
+  border-color: var(--main);
   height: 300px;
   width: 300px;
   margin: 10px;
   padding: 5px;
   overflow: hidden;
+  background-color: var(--secondary);
+  color: var(--main);
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: var(--tertiary);
 }
 
 .card-title {
   font-weight: 900;
+}
+
+#card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 5% 0 5%;
 }
