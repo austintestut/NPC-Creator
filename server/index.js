@@ -1,12 +1,13 @@
 const express = require("express");
 const path = require("path");
 const axios = require("axios");
-const { TOKEN } = require("../config.js");
+// const { TOKEN } = require("../config.js");
 const db = require("../database/db.js");
 const { allNames } = require("./nameData.js");
+require('dotenv').config();
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());

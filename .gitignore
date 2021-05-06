@@ -3,6 +3,7 @@
 
 # API token config
 config.js
+.env
 
 # webpack compilation
 public/app.js

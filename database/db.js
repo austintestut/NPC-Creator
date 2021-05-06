@@ -1,12 +1,12 @@
 const postgres = require('postgres');
-const { dbUser, dbPass, DATABASE_URL, dbName } = require('../config.js');
+require('dotenv').config();
 
 const sql = postgres({
-  host: DATABASE_URL,
+  host: process.env.DATABASE_URL,
   port: 5432,
-  database: dbName,
-  username: dbUser,
-  password: dbPass,
+  database: process.env.DB_NAME,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
   ssl: { rejectUnauthorized: false }
 });
 
