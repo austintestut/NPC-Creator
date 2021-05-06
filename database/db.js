@@ -1,12 +1,13 @@
 const postgres = require('postgres');
-const { dbUser, dbPass, dbIP } = require('../config.js');
+const { dbUser, dbPass, DATABASE_URL, dbName } = require('../config.js');
 
 const sql = postgres({
-  host: dbIP,
+  host: DATABASE_URL,
   port: 5432,
-  database: 'npcs',
+  database: dbName,
   username: dbUser,
-  password: dbPass
+  password: dbPass,
+  ssl: { rejectUnauthorized: false }
 });
 
 const getAllNPCs = async () => {
