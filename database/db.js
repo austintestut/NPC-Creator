@@ -2,7 +2,7 @@ const postgres = require('postgres');
 require('dotenv').config();
 
 const sql = postgres({
-  host: process.env.DATABASE_URL,
+  host: process.env.DB_IP,
   port: 5432,
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
