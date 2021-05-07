@@ -1,8 +1,7 @@
 
 ### node etc ###
 
-# API token config
-config.js
+# environment variables config
 .env
 
 # webpack compilation

@@ -1,7 +1,6 @@
 const express = require("express");
 const path = require("path");
 const axios = require("axios");
-// const { TOKEN } = require("../config.js");
 const db = require("../database/db.js");
 const { allNames } = require("./nameData.js");
 require('dotenv').config();
