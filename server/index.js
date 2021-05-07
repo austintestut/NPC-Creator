@@ -31,7 +31,6 @@ app.get("/npcs", (req, res) => {
       res.status(200).send(data);
     })
     .catch((err) => {
-      console.log(err);
       res.status(404).send("err getting NPCs --server");
     });
 });
@@ -42,7 +41,6 @@ app.post("/npcs", (req, res) => {
       res.status(201).send("NPC added!");
     })
     .catch((err) => {
-      console.log(err);
       res.status(404).send("err adding NPC --server");
     });
 });
@@ -60,7 +58,6 @@ app.put("/npcs", (req, res) => {
       res.status(201).send("NPC updated");
     })
     .catch((err) => {
-      console.log(err);
       res.status(404).send("err updating NPC --server");
     });
 });
@@ -71,7 +68,6 @@ app.put("/npcs/delete", (req, res) => {
       res.status(200).send("NPC deleted");
     })
     .catch((err) => {
-      console.log(err);
       res.status(404).send("err deleting NPC --server");
     });
 });
