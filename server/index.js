@@ -1,6 +1,9 @@
 const express = require("express");
 const path = require("path");
 const axios = require("axios");
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const auth = require('./authentication');
 const db = require("../database/db.js");
 const { allNames } = require("./nameData.js");
 require('dotenv').config();
@@ -11,9 +14,28 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json());
 
+app.use(
+  cookieSession({
+    name: 'microphone-session',
+    keys: [`${process.env.COOKIE_KEY}`],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.get("/", (req, res) => {
   res.status(200).send("root");
 });
+
+app.get('/google', auth.authScope);
+
+app.get('/google/callback', auth.googleAuth, auth.loggedinRedirect);
+
+app.get('/user', auth.authCheck, auth.sendUser);
+
+app.get('/loggedin', auth.authCheck, auth.homeRedirect);
+
+app.get('/logout', auth.logout);
 
 app.get("/name/:name_style", (req, res) => {
   let npcName =
