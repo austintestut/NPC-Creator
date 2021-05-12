@@ -29,6 +29,9 @@ const deleteNPC = async (id) => {
 const addUser = async (id, name) => {
   return await sql`INSERT INTO users (google_id, user_name) VALUES (${id}, ${name})`;
 }
+const findUser = async (id) => {
+  return await sql`SELECT * FROM users WHERE google_id = ${id}`;
+}
 
 module.exports = {
   getAllNPCs,
@@ -36,4 +39,5 @@ module.exports = {
   updateNPC,
   deleteNPC,
   addUser,
+  findUser,
 }
