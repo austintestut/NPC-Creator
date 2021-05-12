@@ -14,7 +14,9 @@ class App extends React.Component {
       npcData: [],
       addFormShowing: false,
       editFormShowing: false,
-      editID: null
+      editID: null,
+      userID: null,
+      userName: null,
     }
     this.getAllNPCs = this.getAllNPCs.bind(this);
     this.generateNPC = this.generateNPC.bind(this);
