@@ -31,7 +31,6 @@ const addUser = async (id, name) => {
 };
 
 const findUser = async (id) => {
-  console.log('ID from database', id);
   if (typeof id === 'number') {
     return await sql`SELECT * FROM users WHERE id=${id}`
   } else {
