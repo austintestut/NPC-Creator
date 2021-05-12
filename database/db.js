@@ -11,20 +11,24 @@ const sql = postgres({
 });
 
 const getAllNPCs = async () => {
-  return await sql`SELECT * FROM allNPCs`;
+  return await sql`SELECT * FROM npcs`;
 };
 
 const addNPC = async (name, race, demeanor, quality) => {
-  return await sql`INSERT INTO allNPCs (name, race, demeanor, notes, quality) VALUES (${name}, ${race}, ${demeanor}, '', ${quality})`;
+  return await sql`INSERT INTO npcs (name, race, demeanor, notes, quality) VALUES (${name}, ${race}, ${demeanor}, '', ${quality})`;
 };
 
 const updateNPC = async (id, name, race, demeanor, notes, quality) => {
-  return await sql`UPDATE allNPCs SET name=${name}, race=${race}, demeanor=${demeanor}, notes=${notes}, quality=${quality} WHERE id=${id}`;
+  return await sql`UPDATE npcs SET name=${name}, race=${race}, demeanor=${demeanor}, notes=${notes}, quality=${quality} WHERE id=${id}`;
 };
 
 const deleteNPC = async (id) => {
-  return await sql`DELETE FROM allNPCs WHERE id=${id}`;
+  return await sql`DELETE FROM npcs WHERE id=${id}`;
 };
+
+const addUser = async (id, name) => {
+  return await sql`INSERT INTO users (google_id, user_name) VALUES (${id}, ${name})`;
+}
 
 module.exports = {
   getAllNPCs: getAllNPCs,
