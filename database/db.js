@@ -28,10 +28,16 @@ const deleteNPC = async (id) => {
 
 const addUser = async (id, name) => {
   return await sql`INSERT INTO users (google_id, user_name) VALUES (${id}, ${name})`;
-}
+};
+
 const findUser = async (id) => {
-  return await sql`SELECT * FROM users WHERE google_id = ${id}`;
-}
+  console.log('ID from database', id);
+  if (typeof id === 'number') {
+    return await sql`SELECT * FROM users WHERE id=${id}`
+  } else {
+    return await sql`SELECT * FROM users WHERE google_id=${id}`;
+  }
+};
 
 module.exports = {
   getAllNPCs,
