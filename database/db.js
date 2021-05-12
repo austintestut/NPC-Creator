@@ -31,8 +31,9 @@ const addUser = async (id, name) => {
 }
 
 module.exports = {
-  getAllNPCs: getAllNPCs,
-  addNPC: addNPC,
-  updateNPC: updateNPC,
-  deleteNPC: deleteNPC
+  getAllNPCs,
+  addNPC,
+  updateNPC,
+  deleteNPC,
+  addUser,
 }
