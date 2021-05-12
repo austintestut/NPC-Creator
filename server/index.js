@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.use(
   cookieSession({
-    name: 'microphone-session',
+    name: 'npc-creator-session',
     keys: [`${process.env.COOKIE_KEY}`],
   })
 );
