@@ -1,12 +1,12 @@
 \c postgres;
 
-DROP DATABASE IF EXISTS npcs;
+DROP DATABASE IF EXISTS npc_creator;
 
-CREATE DATABASE npcs;
+CREATE DATABASE npc_creator;
 
-\c npcs;
+\c npc_creator;
 
-CREATE TABLE allNPCs (
+CREATE TABLE npcs (
   id SERIAL PRIMARY KEY,
   owner_id INT,
   name VARCHAR(50),
@@ -18,13 +18,14 @@ CREATE TABLE allNPCs (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
+  google_id INT UNIQUE,
   user_name VARCHAR(75)
 );
 
 CREATE TABLE users_npcs (
   id SERIAL,
   user_id INT REFERENCES users,
-  npc_id INT REFERENCES allNPCs
+  npc_id INT REFERENCES npcs
 );
 
 -- Must be postgres user with SUPERUSER privileges (try: $ su postgres):
