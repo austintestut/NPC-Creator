@@ -18,7 +18,7 @@ CREATE TABLE npcs (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
-  google_id INT UNIQUE,
+  google_id VARCHAR(50) UNIQUE,
   user_name VARCHAR(75)
 );
 
