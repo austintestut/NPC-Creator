@@ -46,8 +46,8 @@ app.get("/name/:name_style", (req, res) => {
   res.status(200).send(npcName);
 });
 
-app.get("/npcs", (req, res) => {
-  db.getAllNPCs()
+app.get("/npcs/:id", (req, res) => {
+  db.getAllNPCs(req.params.id)
     .then((data) => {
       res.status(200).send(data);
     })
@@ -57,7 +57,7 @@ app.get("/npcs", (req, res) => {
 });
 
 app.post("/npcs", (req, res) => {
-  db.addNPC(req.body.name, req.body.race, req.body.demeanor, req.body.quality)
+  db.addNPC(req.body.name, req.body.userID, req.body.race, req.body.demeanor, req.body.quality)
     .then((data) => {
       res.status(201).send("NPC added!");
     })
