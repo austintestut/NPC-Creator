@@ -1,11 +1,11 @@
-import React from 'react';
-import axios from 'axios';
-import AddNewNPCButton from './AddNewNPCButton';
-import AddNewNPCForm from './AddNewNPCForm';
-import NPCCardContainer from './NPCCardContainer';
-import EditNPCForm from './EditNPCForm';
-import helpers from './helperData';
-
+import React from "react";
+import axios from "axios";
+import AddNewNPCButton from "./AddNewNPCButton";
+import AddNewNPCForm from "./AddNewNPCForm";
+import NPCCardContainer from "./NPCCardContainer";
+import EditNPCForm from "./EditNPCForm";
+import helpers from "./helperData";
+import LandingPage from "./LandingPage.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +17,8 @@ class App extends React.Component {
       editID: null,
       userID: null,
       userName: null,
-    }
+      authenticated: false,
+    };
     this.getAllNPCs = this.getAllNPCs.bind(this);
     this.generateNPC = this.generateNPC.bind(this);
     this.addNPC = this.addNPC.bind(this);
@@ -27,49 +28,70 @@ class App extends React.Component {
     this.cancelAdd = this.cancelAdd.bind(this);
     this.updateNPC = this.updateNPC.bind(this);
     this.deleteNPC = this.deleteNPC.bind(this);
+    this.authenticateUser = this.authenticateUser.bind(this);
   }
 
   componentDidMount() {
+    this.authenticateUser();
     this.getAllNPCs();
   }
 
+  authenticateUser() {
+    axios
+      .get('/user')
+      .then((user) => {
+        if (user.data.userName && user.data.id) {
+          this.setState({
+            userID: user.data.id,
+            userName: user.data.userName,
+            authenticated: true,
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   getAllNPCs() {
-    axios.get('/npcs')
+    axios
+      .get("/npcs")
       .then((data) => {
         this.setState({
-          npcData: data.data
+          npcData: data.data,
         });
       })
       .catch((err) => {
-        console.log('err getting NPCs --client');
-      })
+        console.log("err getting NPCs --client");
+      });
   }
 
   addNPC() {
     if (
-      document.getElementById('nameInput').value === '' ||
-      document.getElementById('raceInput').value === '' ||
-      document.getElementById('demeanorInput').value === ''
+      document.getElementById("nameInput").value === "" ||
+      document.getElementById("raceInput").value === "" ||
+      document.getElementById("demeanorInput").value === ""
     ) {
-      window.alert('Cannot submit blank NPC!\n(Quality can be blank)');
+      window.alert("Cannot submit blank NPC!\n(Quality can be blank)");
       return;
     }
-    axios.post('/npcs', {
-      name: document.getElementById('nameInput').value,
-      race: document.getElementById('raceInput').value,
-      demeanor: document.getElementById('demeanorInput').value,
-      quality: document.getElementById('qualityInput').value
-    })
+    axios
+      .post("/npcs", {
+        name: document.getElementById("nameInput").value,
+        race: document.getElementById("raceInput").value,
+        demeanor: document.getElementById("demeanorInput").value,
+        quality: document.getElementById("qualityInput").value,
+      })
       .then((res) => {
-        document.getElementById('nameInput').value = '';
-        document.getElementById('raceInput').value = '';
-        document.getElementById('demeanorInput').value = '';
-        document.getElementById('qualityInput').value = '';
+        document.getElementById("nameInput").value = "";
+        document.getElementById("raceInput").value = "";
+        document.getElementById("demeanorInput").value = "";
+        document.getElementById("qualityInput").value = "";
         this.getAllNPCs();
       })
       .catch((err) => {
-        console.log('err saving NPC --client');
-      })
+        console.log("err saving NPC --client");
+      });
   }
 
   generateNPC() {
@@ -77,16 +99,17 @@ class App extends React.Component {
     let raceAPIParam = helpers.raceAPIStyle[randomRace];
     let randomDemeanor = helpers.demeanors[this.randomNumberGenerator(0, 39)];
     let randomQuality = helpers.qualities[this.randomNumberGenerator(0, 37)];
-    axios.get(`/name/${raceAPIParam}`)
+    axios
+      .get(`/name/${raceAPIParam}`)
       .then((name) => {
-        document.getElementById('nameInput').value = name.data;
-        document.getElementById('raceInput').value = randomRace;
-        document.getElementById('demeanorInput').value = randomDemeanor;
-        document.getElementById('qualityInput').value = randomQuality;
+        document.getElementById("nameInput").value = name.data;
+        document.getElementById("raceInput").value = randomRace;
+        document.getElementById("demeanorInput").value = randomDemeanor;
+        document.getElementById("qualityInput").value = randomQuality;
       })
       .catch((err) => {
-        console.log('err generating NPC');
-      })
+        console.log("err generating NPC");
+      });
   }
 
   randomNumberGenerator(min, max) {
@@ -98,107 +121,126 @@ class App extends React.Component {
 
   updateNPC() {
     if (
-      document.getElementById('editNameInput').value === '' ||
-      document.getElementById('editRaceInput').value === '' ||
-      document.getElementById('editDemeanorInput').value === ''
+      document.getElementById("editNameInput").value === "" ||
+      document.getElementById("editRaceInput").value === "" ||
+      document.getElementById("editDemeanorInput").value === ""
     ) {
-      window.alert('Cannot submit blank NPC!\n(Quality and Notes can be blank)');
+      window.alert(
+        "Cannot submit blank NPC!\n(Quality and Notes can be blank)"
+      );
       return;
     }
-    axios.put('/npcs', {
-      id: this.state.editID,
-      name: document.getElementById('editNameInput').value,
-      race: document.getElementById('editRaceInput').value,
-      demeanor: document.getElementById('editDemeanorInput').value,
-      notes: document.getElementById('editNotesInput').value,
-      quality: document.getElementById('editQualityInput').value
-    })
-    .then((response) => {
-      this.setState({
-        editFormShowing: false,
+    axios
+      .put("/npcs", {
+        id: this.state.editID,
+        name: document.getElementById("editNameInput").value,
+        race: document.getElementById("editRaceInput").value,
+        demeanor: document.getElementById("editDemeanorInput").value,
+        notes: document.getElementById("editNotesInput").value,
+        quality: document.getElementById("editQualityInput").value,
+      })
+      .then((response) => {
+        this.setState({
+          editFormShowing: false,
+        });
+        this.getAllNPCs();
       });
-      this.getAllNPCs();
-    })
   }
 
   deleteNPC() {
-    axios.put('/npcs/delete', {
-      id: this.state.editID
-    })
-    .then((response) => {
-      this.setState({
-        editFormShowing: false,
-        npcFormName: '',
-        npcFormRace: '',
-        npcFormDemeanor: ''
+    axios
+      .put("/npcs/delete", {
+        id: this.state.editID,
+      })
+      .then((response) => {
+        this.setState({
+          editFormShowing: false,
+          npcFormName: "",
+          npcFormRace: "",
+          npcFormDemeanor: "",
+        });
+        this.getAllNPCs();
       });
-      this.getAllNPCs();
-    })
   }
 
   showAddForm() {
     this.setState({
-      addFormShowing: true
+      addFormShowing: true,
     });
   }
 
   showEditForm(id, name, race, demeanor, notes, quality) {
-    this.setState({
-      editFormShowing: true,
-      editID: id
-    }, () => {
-      document.getElementById('editNameInput').value = name;
-      document.getElementById('editRaceInput').value = race;
-      document.getElementById('editDemeanorInput').value = demeanor;
-      document.getElementById('editNotesInput').value = notes;
-      document.getElementById('editQualityInput').value = quality;
-    })
+    this.setState(
+      {
+        editFormShowing: true,
+        editID: id,
+      },
+      () => {
+        document.getElementById("editNameInput").value = name;
+        document.getElementById("editRaceInput").value = race;
+        document.getElementById("editDemeanorInput").value = demeanor;
+        document.getElementById("editNotesInput").value = notes;
+        document.getElementById("editQualityInput").value = quality;
+      }
+    );
   }
 
   cancelEdit() {
     this.setState({
       editFormShowing: false,
       editID: null,
-      npcFormName: '',
-      npcFormRace: '',
-      npcFormDemeanor: ''
-    })
+      npcFormName: "",
+      npcFormRace: "",
+      npcFormDemeanor: "",
+    });
   }
 
   cancelAdd() {
     this.setState({
       addFormShowing: false,
-      npcFormName: '',
-      npcFormRace: '',
-      npcFormDemeanor: ''
-    })
+      npcFormName: "",
+      npcFormRace: "",
+      npcFormDemeanor: "",
+    });
   }
 
   render() {
+    const { authenticated } = this.state;
     return (
       <>
-        <h2>NPC Creator</h2>
-        <h4><i>Stop naming your NPCs Bob!</i></h4>
-        <AddNewNPCButton
-          showAddForm={this.showAddForm}
-        />
-        {this.state.addFormShowing && <AddNewNPCForm
-          generateNPC={this.generateNPC}
-          addNPC={this.addNPC}
-          cancelAdd={this.cancelAdd}
-        />}
-        <h2>My NPCs</h2>
-        <NPCCardContainer
-          npcData={this.state.npcData}
-          showEditForm={this.showEditForm}
-        />
-        {this.state.editFormShowing && <EditNPCForm
-          cancelEdit={this.cancelEdit}
-          updateNPC={this.updateNPC}
-          deleteNPC={this.deleteNPC}
-        />}
+        {!authenticated && (
+          <LandingPage authenticateUser={this.authenticateUser} />
+        )}
+        {authenticated && (
+          <>
+            <h2>NPC Creator</h2>
+            <h4>
+              <i>Stop naming your NPCs Bob!</i>
+            </h4>
+            <AddNewNPCButton showAddForm={this.showAddForm} />
+            {this.state.addFormShowing && (
+              <AddNewNPCForm
+                generateNPC={this.generateNPC}
+                addNPC={this.addNPC}
+                cancelAdd={this.cancelAdd}
+              />
+            )}
+            <h2>My NPCs</h2>
+            <NPCCardContainer
+              npcData={this.state.npcData}
+              showEditForm={this.showEditForm}
+            />
+            {this.state.editFormShowing && (
+              <EditNPCForm
+                cancelEdit={this.cancelEdit}
+                updateNPC={this.updateNPC}
+                deleteNPC={this.deleteNPC}
+              />
+            )}
+          </>
+        )}
       </>
-    )
+    );
   }
 }
 
