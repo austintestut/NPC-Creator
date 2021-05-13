@@ -33,19 +33,24 @@ class App extends React.Component {
 
   componentDidMount() {
     this.authenticateUser();
-    this.getAllNPCs();
   }
 
   authenticateUser() {
     axios
-      .get('/user')
+      .get("/user")
       .then((user) => {
         if (user.data.userName && user.data.id) {
-          this.setState({
-            userID: user.data.id,
-            userName: user.data.userName,
-            authenticated: true,
-          });
+          this.setState(
+            {
+              userID: user.data.id,
+              userName: user.data.userName,
+              authenticated: true,
+            },
+            () => {
+              const { userID } = this.state;
+              this.getAllNPCs(userID);
+            }
+          );
         }
       })
       .catch((err) => {
@@ -53,20 +58,21 @@ class App extends React.Component {
       });
   }
 
-  getAllNPCs() {
+  getAllNPCs(userID) {
     axios
-      .get("/npcs")
+      .get(`/npcs/${userID}`)
       .then((data) => {
         this.setState({
           npcData: data.data,
         });
       })
       .catch((err) => {
-        console.log("err getting NPCs --client");
+        console.log("err getting NPCs --client", err);
       });
   }
 
   addNPC() {
+    const { userID } = this.state;
     if (
       document.getElementById("nameInput").value === "" ||
       document.getElementById("raceInput").value === "" ||
@@ -78,6 +84,7 @@ class App extends React.Component {
     axios
       .post("/npcs", {
         name: document.getElementById("nameInput").value,
+        userID: userID,
         race: document.getElementById("raceInput").value,
         demeanor: document.getElementById("demeanorInput").value,
         quality: document.getElementById("qualityInput").value,
@@ -87,7 +94,7 @@ class App extends React.Component {
         document.getElementById("raceInput").value = "";
         document.getElementById("demeanorInput").value = "";
         document.getElementById("qualityInput").value = "";
-        this.getAllNPCs();
+        this.getAllNPCs(userID);
       })
       .catch((err) => {
         console.log("err saving NPC --client");
