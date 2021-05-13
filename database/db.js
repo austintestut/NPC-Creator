@@ -10,12 +10,12 @@ const sql = postgres({
   ssl: { rejectUnauthorized: false }
 });
 
-const getAllNPCs = async () => {
-  return await sql`SELECT * FROM npcs`;
+const getAllNPCs = async (id) => {
+  return await sql`SELECT * FROM npcs WHERE owner_id=${id}`;
 };
 
-const addNPC = async (name, race, demeanor, quality) => {
-  return await sql`INSERT INTO npcs (name, race, demeanor, notes, quality) VALUES (${name}, ${race}, ${demeanor}, '', ${quality})`;
+const addNPC = async (name, ownerID, race, demeanor, quality) => {
+  return await sql`INSERT INTO npcs (name, owner_id, race, demeanor, notes, quality) VALUES (${name}, ${ownerID}, ${race}, ${demeanor}, '', ${quality})`;
 };
 
 const updateNPC = async (id, name, race, demeanor, notes, quality) => {
