@@ -9,7 +9,7 @@ const loggedinRedirect = (req, res) => {
   res.redirect('/loggedin');
 };
 const sendUser = (req, res) => {
-  res.send({ userName: req.user.userName, _id: req.user._id });
+  res.send({ userName: req.user.user_name, id: req.user.id });
 };
 const homeRedirect = (req, res) => {
   res.redirect('/');
