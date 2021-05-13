@@ -1,6 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const db = require('../database/db.js');
+const db = require("../database/db.js");
 require("dotenv").config();
 
 passport.serializeUser((user, done) => {
@@ -9,12 +9,12 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   db.findUser(id)
-  .then((user) => {
-    done(null, user[0]);
-  })
-  .catch((err) => {
-    throw ('could not deserialize user', err);
-  });
+    .then((user) => {
+      done(null, user[0]);
+    })
+    .catch((err) => {
+      throw ("could not deserialize user", err);
+    });
 });
 
 passport.use(
@@ -27,16 +27,20 @@ passport.use(
     },
     (accessToken, refreshToken, profile, done) => {
       db.findUser(profile.id)
-      .then((user) => {
-        if (user[0].count === 0) {
-          db.addUser(profile.id, profile.displayName);
-        } else {
-          done(null, user[0]);
-        }
-      })
-      .catch((err) => {
-        console.error('error querying database for user');
-      });
+        .then((user) => {
+          // console.log(user);
+          if (user.count === 0 || user === undefined) {
+            db.addUser(profile.id, profile.displayName).then((addedUser) => {
+              // console.log('added user', addedUser);
+              done(null, addedUser);
+            });
+          } else {
+            done(null, user[0]);
+          }
+        })
+        .catch((err) => {
+          console.error("error querying database for user");
+        });
     }
   )
 );
