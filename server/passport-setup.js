@@ -28,11 +28,9 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       db.findUser(profile.id)
         .then((user) => {
-          // console.log(user);
           if (user.count === 0 || user === undefined) {
             db.addUser(profile.id, profile.displayName).then((addedUser) => {
-              // console.log('added user', addedUser);
-              done(null, addedUser);
+              done(null, addedUser[0]);
             });
           } else {
             done(null, user[0]);
