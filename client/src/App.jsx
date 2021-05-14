@@ -128,6 +128,7 @@ class App extends React.Component {
   }
 
   updateNPC() {
+    const { userID } = this.state;
     if (
       document.getElementById("editNameInput").value === "" ||
       document.getElementById("editRaceInput").value === "" ||
@@ -151,7 +152,7 @@ class App extends React.Component {
         this.setState({
           editFormShowing: false,
         });
-        this.getAllNPCs();
+        this.getAllNPCs(userID);
       });
   }
 
