@@ -27,7 +27,7 @@ const deleteNPC = async (id) => {
 };
 
 const addUser = async (id, name) => {
-  return await sql`INSERT INTO users (google_id, user_name) VALUES (${id}, ${name})`;
+  return await sql`INSERT INTO users (google_id, user_name) VALUES (${id}, ${name}) RETURNING id`;
 };
 
 const findUser = async (id) => {
