@@ -151,3 +151,9 @@ button:hover {
     var(--tertiary)
   );
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  color: black;
+}
