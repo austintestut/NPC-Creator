@@ -6,6 +6,7 @@ import NPCCardContainer from "./NPCCardContainer";
 import EditNPCForm from "./EditNPCForm";
 import helpers from "./helperData";
 import LandingPage from "./LandingPage.jsx";
+import Footer from "./Footer.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -214,7 +215,7 @@ class App extends React.Component {
   render() {
     const { authenticated } = this.state;
     return (
-      <>
+      <div>
         {!authenticated && (
           <LandingPage authenticateUser={this.authenticateUser} />
         )}
@@ -247,9 +248,10 @@ class App extends React.Component {
                 deleteNPC={this.deleteNPC}
               />
             )}
+            <Footer />
           </div>
         )}
-      </>
+      </div>
     );
   }
 }

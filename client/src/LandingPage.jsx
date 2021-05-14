@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "./Footer.jsx";
 
 const LandingPage = ({ authenticateUser }) => (
   <div id="landing">
@@ -8,6 +9,7 @@ const LandingPage = ({ authenticateUser }) => (
         Log in with Google
       </button>
     </a>
+    <Footer />
   </div>
 );
 
