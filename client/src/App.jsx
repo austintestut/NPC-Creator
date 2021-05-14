@@ -219,7 +219,10 @@ class App extends React.Component {
           <LandingPage authenticateUser={this.authenticateUser} />
         )}
         {authenticated && (
-          <>
+          <div id="app">
+            <a href="/logout">
+              <button id="logout-button">Logout</button>
+            </a>
             <h2>NPC Creator</h2>
             <h4>
               <i>Stop naming your NPCs Bob!</i>
@@ -244,7 +247,7 @@ class App extends React.Component {
                 deleteNPC={this.deleteNPC}
               />
             )}
-          </>
+          </div>
         )}
       </>
     );
