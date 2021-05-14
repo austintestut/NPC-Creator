@@ -22,11 +22,5 @@ CREATE TABLE users (
   user_name VARCHAR(75)
 );
 
-CREATE TABLE users_npcs (
-  id SERIAL,
-  user_id INT REFERENCES users,
-  npc_id INT REFERENCES npcs
-);
-
 -- Must be postgres user with SUPERUSER privileges (try: $ su postgres):
 -- psql -d postgres < database/schema.sql
