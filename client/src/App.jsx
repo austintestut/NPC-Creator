@@ -157,6 +157,7 @@ class App extends React.Component {
   }
 
   deleteNPC() {
+    const { userID } = this.state;
     axios
       .put("/npcs/delete", {
         id: this.state.editID,
@@ -168,7 +169,7 @@ class App extends React.Component {
           npcFormRace: "",
           npcFormDemeanor: "",
         });
-        this.getAllNPCs();
+        this.getAllNPCs(userID);
       });
   }
 
