@@ -7,6 +7,7 @@ import EditNPCForm from "./EditNPCForm";
 import helpers from "./helperData";
 import LandingPage from "./LandingPage.jsx";
 import Footer from "./Footer.jsx";
+import Header from './Header.jsx';
 
 class App extends React.Component {
   constructor() {
