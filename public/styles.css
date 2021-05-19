@@ -157,3 +157,7 @@ footer {
   bottom: 0;
   color: black;
 }
+
+#header {
+  display: flex;
+}
