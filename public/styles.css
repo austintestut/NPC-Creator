@@ -9,13 +9,9 @@
   margin: 0 0 0 0;
 }
 
-@keyframes landing-title-fade {
+@keyframes landing-fade {
   from {opacity: 0;}
   to {opacity: 1;}
-}
-@keyframes landing-description-fade {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
 }
 
 button {
@@ -131,7 +127,7 @@ button:hover {
   display: inline-block;
   top: 10%;
   left: 35%;
-  animation-name: landing-title-fade;
+  animation-name: landing-fade;
   animation-duration: 2s;
 }
 
@@ -142,7 +138,7 @@ button:hover {
   left: 33%;
   font-weight: 600;
   font-size: 20px;
-  animation-name: landing-description-fade;
+  animation-name: landing-fade;
   animation-duration: 4s;
 }
 
