@@ -128,7 +128,7 @@ button:hover {
   top: 10%;
   left: 35%;
   animation-name: landing-fade;
-  animation-duration: 2s;
+  animation-duration: 3s;
 }
 
 #landing-description {
@@ -139,7 +139,7 @@ button:hover {
   font-weight: 600;
   font-size: 20px;
   animation-name: landing-fade;
-  animation-duration: 4s;
+  animation-duration: 6s;
 }
 
 #login-button {
