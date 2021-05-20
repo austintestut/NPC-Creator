@@ -124,6 +124,15 @@ button:hover {
   left: 35%;
 }
 
+#landing-description {
+  color: var(--main);
+  position: absolute;
+  top: 25%;
+  left: 33%;
+  font-weight: 600;
+  font-size: 20px;
+}
+
 #login-button {
   height: 40px;
   width: 180px;

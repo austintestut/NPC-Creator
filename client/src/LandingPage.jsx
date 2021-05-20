@@ -4,6 +4,7 @@ import Footer from "./Footer.jsx";
 const LandingPage = ({ authenticateUser }) => (
   <div id="landing">
     <span id="landing-title">NPC Creator</span>
+    <span id="landing-description">Create and save new Non-Player Characters on the fly!</span>
     <a href="/google">
       <button type="button" id="login-button">
         <div className="google-icon-wrapper">
