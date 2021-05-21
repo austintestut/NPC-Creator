@@ -9,9 +9,26 @@
   margin: 0 0 0 0;
 }
 
-@keyframes landing-fade {
-  from {opacity: 0;}
-  to {opacity: 1;}
+@keyframes landing-title-fade {
+  from {
+    opacity: 0;
+    top: 0;
+  }
+  to {
+    opacity: 1;
+    top: 10%;
+  }
+}
+
+@keyframes landing-tagline-fade {
+  from {
+    opacity: 0;
+    top: 35%;
+  }
+  to {
+    opacity: 1;
+    top: 25%;
+  }
 }
 
 button {
@@ -127,8 +144,8 @@ button:hover {
   display: inline-block;
   top: 10%;
   left: 35%;
-  animation-name: landing-fade;
-  animation-duration: 3s;
+  animation-name: landing-title-fade;
+  animation-duration: 2s;
 }
 
 #landing-description {
@@ -138,8 +155,8 @@ button:hover {
   left: 33%;
   font-weight: 600;
   font-size: 20px;
-  animation-name: landing-fade;
-  animation-duration: 6s;
+  animation-name: landing-tagline-fade;
+  animation-duration: 2s;
 }
 
 #login-button {
