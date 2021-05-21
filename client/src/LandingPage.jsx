@@ -1,9 +1,11 @@
 import React from "react";
 import Footer from "./Footer.jsx";
+import Title from "../../public/images/NPC-Creator-Title.png";
 
 const LandingPage = ({ authenticateUser }) => (
   <div id="landing">
-    <span id="landing-title">NPC Creator</span>
+    {/* <span id="landing-title">NPC Creator</span> */}
+    <img id="landing-title-pic" src={Title} />
     <span id="landing-description">Create and save new Non-Player Characters on the fly!</span>
     <a href="/google">
       <button type="button" id="login-button">

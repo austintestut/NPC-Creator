@@ -12,22 +12,22 @@
 @keyframes landing-title-fade {
   from {
     opacity: 0;
-    top: 0;
+    margin-top: 0;
   }
   to {
     opacity: 1;
-    top: 10%;
+    margin-top: 5%;
   }
 }
 
 @keyframes landing-tagline-fade {
   from {
     opacity: 0;
-    top: 35%;
+    top: 20%;
   }
   to {
     opacity: 1;
-    top: 25%;
+    top: 0;
   }
 }
 
@@ -128,6 +128,7 @@ button:hover {
   position: absolute;
   height: 100%;
   width: 100%;
+  text-align: center;
   background-image: linear-gradient(
     135deg,
     var(--main),
@@ -136,27 +137,28 @@ button:hover {
   );
 }
 
-#landing-title {
-  color: var(--main);
-  font-weight: 800;
-  font-size: 500%;
-  position: absolute;
-  display: inline-block;
-  top: 10%;
-  left: 35%;
+#landing-title-pic {
+  display: block;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
   animation-name: landing-title-fade;
   animation-duration: 2s;
 }
 
 #landing-description {
   color: var(--main);
-  position: absolute;
-  top: 25%;
-  left: 33%;
+  display: block;
+  position: relative;
+  top: 0;
   font-weight: 600;
   font-size: 20px;
+  opacity: 0;
   animation-name: landing-tagline-fade;
   animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
 }
 
 #login-button {
