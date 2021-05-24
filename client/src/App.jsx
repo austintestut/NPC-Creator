@@ -8,6 +8,7 @@ import helpers from "./helperData";
 import LandingPage from "./LandingPage.jsx";
 import Footer from "./Footer.jsx";
 import Header from './Header.jsx';
+import Title from "../../public/images/NPC-Creator-Title.png";
 
 class App extends React.Component {
   constructor() {
@@ -227,7 +228,7 @@ class App extends React.Component {
             <a href="/logout">
               <button id="logout-button">Logout</button>
             </a>
-            <h2>NPC Creator</h2>
+            <img className="app-logo" src={Title} />
             <h4>
               <i>Stop naming your NPCs Bob!</i>
             </h4>
