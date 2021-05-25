@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "./Footer.jsx";
-import Title from "../../public/images/NPC-Creator-Title.png";
+import Title from "../../public/images/npcc.png";
 
 const LandingPage = ({ authenticateUser }) => (
   <div id="landing">
