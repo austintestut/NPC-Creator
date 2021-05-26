@@ -217,7 +217,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { authenticated } = this.state;
+    const { authenticated, userName } = this.state;
     return (
       <div>
         {!authenticated && (
@@ -225,7 +225,7 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div id="app">
-            <Header />
+            <Header userName={userName} />
             <AddNewNPCButton showAddForm={this.showAddForm} />
             {this.state.addFormShowing && (
               <AddNewNPCForm

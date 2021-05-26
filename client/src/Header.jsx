@@ -1,9 +1,10 @@
 import React from 'react';
 import Title from "../../public/images/npc-text.png";
 
-const Header = () => (
+const Header = ({userName}) => (
   <div id="header">
     <img className="app-logo" src={Title} />
+    <span id="app-username">{userName}</span>
     <a href="/logout">
       <button id="logout-button">Logout</button>
     </a>
