@@ -214,6 +214,18 @@ button:hover {
   height: 55px;
 }
 
+#header-buffer {
+  width: auto;
+}
+
+#app-username {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 #app {
   position: absolute;
   height: 100%;
