@@ -10,6 +10,12 @@
   margin: 0 0 0 0;
 }
 
+body {
+  background-image: linear-gradient(to top, var(--main), white, var(--fourth));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 @keyframes landing-title-fade {
   from {
     opacity: 0;
@@ -38,12 +44,13 @@ button {
   border-radius: 5px;
   color: white;
   background-color: var(--main);
+  height: 20px;
 }
 
 button:hover {
   cursor: pointer;
   background-color: var(--tertiary);
-  color: var(--main);
+  color: var(--secondary);
 }
 
 .form-container {
@@ -123,6 +130,7 @@ button:hover {
   flex-direction: row;
   flex-wrap: wrap;
   padding: 0 5% 0 5%;
+  padding-bottom: 10px;
 }
 
 #landing {
@@ -130,8 +138,6 @@ button:hover {
   height: 100%;
   width: 100%;
   text-align: center;
-  /* background-image: url('./images/NPC-Background.svg'); */
-  background-image: linear-gradient(to top, var(--main), white, var(--fourth));
 }
 
 #landing-title-pic {
@@ -202,6 +208,18 @@ button:hover {
   letter-spacing: 0.2px;
 }
 
+#header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  border-style: solid;
+  border-color: var(--main);
+  border-width: 0 0 3px 0;
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+}
+
 #logout-button {
   height: 50px;
   min-width: 70px;
@@ -226,7 +244,8 @@ button:hover {
   max-height: 50px;
 }
 
-#app-username, #header-npc-count {
+#app-username,
+#header-npc-count {
   color: var(--secondary);
   font-weight: 600;
   font-size: 15px;
@@ -234,21 +253,14 @@ button:hover {
 }
 
 #app {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-image: linear-gradient(to top, var(--main), var(--fourth), white);
+  top: 30px;
+  position: relative;
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   color: black;
-}
-
-#header {
-  display: flex;
-  border-style: solid;
-  border-color: var(--main);
-  border-width: 0 0 3px 0;
+  background-color: white;
+  width: 100%;
 }
