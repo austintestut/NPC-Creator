@@ -107,8 +107,8 @@ button:hover {
   border-width: 2px;
   border-radius: 5px;
   border-color: var(--secondary);
-  height: 300px;
-  width: 300px;
+  max-height: 20%;
+  min-width: 20%;
   margin: 10px;
   padding: 5px;
   overflow: hidden;
@@ -129,8 +129,11 @@ button:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 5% 0 5%;
+  width: 80%;
+  margin: 0 auto 0 auto;
   padding-bottom: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 #landing {
@@ -233,6 +236,8 @@ button:hover {
 #header-buffer-1 {
   width: auto;
   flex-grow: 3;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 #header-buffer-2 {
@@ -249,11 +254,18 @@ button:hover {
   color: var(--secondary);
   font-weight: 600;
   font-size: 15px;
+}
+
+#app-username {
+  margin: auto 0 auto 20px;
+}
+
+#header-npc-count {
   margin: auto 20px auto 0;
 }
 
-#app {
-  top: 30px;
+.app {
+  top: 60px;
   position: relative;
 }
 
