@@ -1,5 +1,5 @@
 :root {
-  --main: #31AFB4;
+  --main: #31afb4;
   --secondary: #115571;
   --tertiary: #cbcece;
   --fourth: #e9e9e9f3;
@@ -131,12 +131,7 @@ button:hover {
   width: 100%;
   text-align: center;
   /* background-image: url('./images/NPC-Background.svg'); */
-  background-image: linear-gradient(
-    to top,
-    var(--main),
-    white,
-    var(--fourth)
-  );
+  background-image: linear-gradient(to top, var(--main), white, var(--fourth));
 }
 
 #landing-title-pic {
@@ -208,10 +203,11 @@ button:hover {
 }
 
 #logout-button {
-  height: 40px;
-  width: 5%;
-  top: 0;
-  float: right;
+  height: 50px;
+  width: 7%;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
 .app-logo {
@@ -238,4 +234,7 @@ footer {
 
 #header {
   display: flex;
+  border-style: solid;
+  border-color: var(--main);
+  border-width: 0 0 3px 0;
 }
