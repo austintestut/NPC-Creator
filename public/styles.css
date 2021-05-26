@@ -204,38 +204,40 @@ button:hover {
 
 #logout-button {
   height: 50px;
-  width: 7%;
-  position: absolute;
-  top: 2px;
-  right: 2px;
+  min-width: 70px;
+  margin: 2px 2px 2px 0;
 }
 
 .app-logo {
   height: 55px;
 }
 
-#header-buffer {
+#header-buffer-1 {
   width: auto;
+  flex-grow: 3;
 }
 
-#app-username {
+#header-buffer-2 {
+  width: auto;
+  flex-grow: 3;
+}
+
+#header-pic {
+  max-height: 50px;
+}
+
+#app-username, #header-npc-count {
   color: var(--secondary);
   font-weight: 600;
   font-size: 15px;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto 20px auto 0;
 }
 
 #app {
   position: absolute;
   height: 100%;
   width: 100%;
-  /* background-image: linear-gradient(
-    135deg,
-    var(--main),
-    var(--tertiary),
-    var(--fourth)
-  ); */
+  background-image: linear-gradient(to top, var(--main), var(--fourth), white);
 }
 
 footer {
