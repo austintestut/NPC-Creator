@@ -7,7 +7,7 @@ import EditNPCForm from "./EditNPCForm";
 import helpers from "./helperData";
 import LandingPage from "./LandingPage.jsx";
 import Footer from "./Footer.jsx";
-import Header from './Header.jsx';
+import Header from "./Header.jsx";
 import Title from "../../public/images/npc-text.png";
 
 class App extends React.Component {
@@ -68,7 +68,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState({
           npcData: data.data,
-          npcCount: data.data.length
+          npcCount: data.data.length,
         });
       })
       .catch((err) => {
@@ -226,31 +226,33 @@ class App extends React.Component {
           <LandingPage authenticateUser={this.authenticateUser} />
         )}
         {authenticated && (
-          <div id="app">
-            <Header userName={userName} npcCount={npcCount}/>
-            <AddNewNPCButton showAddForm={this.showAddForm} />
-            {this.state.addFormShowing && (
-              <AddNewNPCForm
-                generateNPC={this.generateNPC}
-                addNPC={this.addNPC}
-                cancelAdd={this.cancelAdd}
+          <>
+            <Header userName={userName} npcCount={npcCount} />
+            <div id="app">
+              <AddNewNPCButton showAddForm={this.showAddForm} />
+              {this.state.addFormShowing && (
+                <AddNewNPCForm
+                  generateNPC={this.generateNPC}
+                  addNPC={this.addNPC}
+                  cancelAdd={this.cancelAdd}
+                />
+              )}
+              <h2>My NPCs</h2>
+              <NPCCardContainer
+                npcData={this.state.npcData}
+                showEditForm={this.showEditForm}
               />
-            )}
-            <h2>My NPCs</h2>
-            <NPCCardContainer
-              npcData={this.state.npcData}
-              showEditForm={this.showEditForm}
-            />
-            {this.state.editFormShowing && (
-              <EditNPCForm
-                cancelEdit={this.cancelEdit}
-                updateNPC={this.updateNPC}
-                deleteNPC={this.deleteNPC}
-              />
-            )}
-            <Footer />
-          </div>
+              {this.state.editFormShowing && (
+                <EditNPCForm
+                  cancelEdit={this.cancelEdit}
+                  updateNPC={this.updateNPC}
+                  deleteNPC={this.deleteNPC}
+                />
+              )}
+            </div>
+          </>
         )}
+        <Footer />
       </div>
     );
   }
