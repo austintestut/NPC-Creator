@@ -228,7 +228,7 @@ class App extends React.Component {
         {authenticated && (
           <>
             <Header userName={userName} npcCount={npcCount} />
-            <div id="app">
+            <div className="app">
               <AddNewNPCButton showAddForm={this.showAddForm} />
               {this.state.addFormShowing && (
                 <AddNewNPCForm
