@@ -15,6 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       npcData: [],
+      npcCount: 0,
       addFormShowing: false,
       editFormShowing: false,
       editID: null,
@@ -67,6 +68,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState({
           npcData: data.data,
+          npcCount: data.data.length
         });
       })
       .catch((err) => {
@@ -217,7 +219,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { authenticated, userName } = this.state;
+    const { authenticated, userName, npcCount } = this.state;
     return (
       <div>
         {!authenticated && (
@@ -225,7 +227,7 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div id="app">
-            <Header userName={userName} />
+            <Header userName={userName} npcCount={npcCount}/>
             <AddNewNPCButton showAddForm={this.showAddForm} />
             {this.state.addFormShowing && (
               <AddNewNPCForm
