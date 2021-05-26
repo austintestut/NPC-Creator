@@ -225,13 +225,7 @@ class App extends React.Component {
         )}
         {authenticated && (
           <div id="app">
-            <a href="/logout">
-              <button id="logout-button">Logout</button>
-            </a>
-            <img className="app-logo" src={Title} />
-            <h4>
-              <i>Stop naming your NPCs Bob!</i>
-            </h4>
+            <Header />
             <AddNewNPCButton showAddForm={this.showAddForm} />
             {this.state.addFormShowing && (
               <AddNewNPCForm
