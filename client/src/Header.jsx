@@ -1,12 +1,11 @@
 import React from 'react';
+import Title from "../../public/images/npc-text.png";
 
 const Header = () => (
   <div id="header">
-    <span className="header-title">
-    NPC Creator
-    </span>
+    <img className="app-logo" src={Title} />
     <a href="/logout">
-      <button>Logout</button>
+      <button id="logout-button">Logout</button>
     </a>
   </div>
 );
