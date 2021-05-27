@@ -107,7 +107,7 @@ button:hover {
   border-width: 2px;
   border-radius: 5px;
   border-color: var(--secondary);
-  max-height: 20%;
+  height: 22%;
   min-width: 20%;
   margin: 10px;
   padding: 5px;
@@ -133,7 +133,7 @@ button:hover {
   margin: 0 auto 0 auto;
   padding-bottom: 10px;
   justify-content: center;
-  align-items: center;
+  align-items: left;
 }
 
 #landing {
