@@ -38,6 +38,8 @@ button {
   border-radius: 5px;
   color: white;
   background-color: var(--main);
+  height: 40px;
+  min-width: 100px;
 }
 
 button:hover {
