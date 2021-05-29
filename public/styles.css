@@ -10,6 +10,12 @@
   margin: 0 0 0 0;
 }
 
+body {
+  background-image: linear-gradient(to top, var(--main), white, var(--fourth));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 @keyframes landing-title-fade {
   from {
     opacity: 0;
@@ -38,14 +44,18 @@ button {
   border-radius: 5px;
   color: white;
   background-color: var(--main);
+<<<<<<< HEAD
   height: 40px;
   min-width: 100px;
+=======
+  height: 20px;
+>>>>>>> 2d2d865d7f4a854a654777d654994290ce60246e
 }
 
 button:hover {
   cursor: pointer;
   background-color: var(--tertiary);
-  color: var(--main);
+  color: var(--secondary);
 }
 
 .form-container {
@@ -102,8 +112,8 @@ button:hover {
   border-width: 2px;
   border-radius: 5px;
   border-color: var(--secondary);
-  height: 300px;
-  width: 300px;
+  height: 22%;
+  min-width: 20%;
   margin: 10px;
   padding: 5px;
   overflow: hidden;
@@ -124,7 +134,11 @@ button:hover {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 5% 0 5%;
+  width: 80%;
+  margin: 0 auto 0 auto;
+  padding-bottom: 10px;
+  justify-content: center;
+  align-items: left;
 }
 
 #landing {
@@ -132,8 +146,6 @@ button:hover {
   height: 100%;
   width: 100%;
   text-align: center;
-  /* background-image: url('./images/NPC-Background.svg'); */
-  background-image: linear-gradient(to top, var(--main), white, var(--fourth));
 }
 
 #landing-title-pic {
@@ -204,51 +216,68 @@ button:hover {
   letter-spacing: 0.2px;
 }
 
+#header {
+  display: flex;
+  position: fixed;
+  top: 0;
+  border-style: solid;
+  border-color: var(--main);
+  border-width: 0 0 3px 0;
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+}
+
 #logout-button {
   height: 50px;
-  width: 7%;
-  position: absolute;
-  top: 2px;
-  right: 2px;
+  min-width: 70px;
+  margin: 2px 2px 2px 0;
 }
 
 .app-logo {
   height: 55px;
 }
 
-#header-buffer {
+#header-buffer-1 {
   width: auto;
+  flex-grow: 3;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-#app-username {
+#header-buffer-2 {
+  width: auto;
+  flex-grow: 3;
+}
+
+#header-pic {
+  max-height: 50px;
+}
+
+#app-username,
+#header-npc-count {
   color: var(--secondary);
   font-weight: 600;
   font-size: 15px;
-  margin-top: auto;
-  margin-bottom: auto;
 }
 
-#app {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  /* background-image: linear-gradient(
-    135deg,
-    var(--main),
-    var(--tertiary),
-    var(--fourth)
-  ); */
+#app-username {
+  margin: auto 0 auto 20px;
+}
+
+#header-npc-count {
+  margin: auto 20px auto 0;
+}
+
+.app {
+  top: 60px;
+  position: relative;
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   color: black;
-}
-
-#header {
-  display: flex;
-  border-style: solid;
-  border-color: var(--main);
-  border-width: 0 0 3px 0;
+  background-color: white;
+  width: 100%;
 }
