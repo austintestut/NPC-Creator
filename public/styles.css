@@ -44,12 +44,8 @@ button {
   border-radius: 5px;
   color: white;
   background-color: var(--main);
-<<<<<<< HEAD
   height: 40px;
   min-width: 100px;
-=======
-  height: 20px;
->>>>>>> 2d2d865d7f4a854a654777d654994290ce60246e
 }
 
 button:hover {
