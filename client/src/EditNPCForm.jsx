@@ -12,7 +12,7 @@ const EditNPCForm = ({
       <img className="form-x" src={xButton} onClick={cancelEdit}/>
       <h3> EDIT NPC </h3>
         <div>
-          <button onClick={deleteNPC}>Delete</button>
+          <button id="del-npc-btn" onClick={deleteNPC}>Delete</button>
         </div>
         <div className="form-boxes">
           <label>
@@ -42,9 +42,9 @@ const EditNPCForm = ({
 
         </div>
         <div>
-          <button onClick={cancelEdit}>Cancel</button>
+          <button className="cancel-npc-btn" onClick={cancelEdit}>Cancel</button>
           {'  '}
-          <button onClick={updateNPC}>Update</button>
+          <button className="save-npc-btn" onClick={updateNPC}>Update</button>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ const AddNewNPCForm = ({
         <img className="form-x" src={xButton} onClick={cancelAdd}/>
         <h3> ADD NEW NPC </h3>
         <div>
-          <button onClick={generateNPC}>Generate Random NPC</button>
+          <button id="gen-npc-btn" onClick={generateNPC}>Generate Random NPC</button>
         </div>
         <div className="form-boxes">
           <label>
@@ -36,9 +36,9 @@ const AddNewNPCForm = ({
           </label>
         </div>
         <div>
-          <button onClick={cancelAdd}>Cancel</button>
+          <button className="cancel-npc-btn" onClick={cancelAdd}>Cancel</button>
           {'  '}
-          <button onClick={addNPC}>Save</button>
+          <button className="save-npc-btn" onClick={addNPC}>Save</button>
         </div>
       </div>
     </div>

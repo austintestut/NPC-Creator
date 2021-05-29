@@ -2,7 +2,7 @@ import React from 'react';
 
 const AddNewNPCButton = ({ showAddForm }) => {
   return (
-    <button onClick={showAddForm}>Add New NPC!</button>
+    <button id="add-npc-btn" onClick={showAddForm}>Add New NPC!</button>
   )
 }
 
