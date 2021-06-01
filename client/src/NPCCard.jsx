@@ -3,8 +3,8 @@ import React from 'react';
 const NPCCard = ({ npc, showEditForm }) => {
   return (
     <div className="card" onClick={() => showEditForm(npc.id, npc.name, npc.race, npc.demeanor, npc.notes, npc.quality)}>
-      <div className="card-title">Name: </div>
-      <div>{npc.name}</div>
+      {/* <div className="card-title card-name">Name: </div> */}
+      <div className="card-title card-name name-border">{npc.name}</div>
       <br />
       <div className="card-title">Race: </div>
       <div>{npc.race}</div>

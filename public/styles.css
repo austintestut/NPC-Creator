@@ -126,6 +126,16 @@ button:hover {
   font-weight: 900;
 }
 
+.card-name {
+  font-size: 20px;
+}
+
+.name-border {
+  border-style: solid;
+  border-color: var(--secondary);
+  border-width: 0 0 3px 0;
+}
+
 #card-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
