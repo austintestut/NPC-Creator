@@ -109,6 +109,7 @@ button:hover {
   border-radius: 5px;
   border-color: var(--secondary);
   min-height: 22%;
+  max-height: 100%;
   min-width: 20%;
   margin: 10px;
   padding: 5px;
@@ -124,6 +125,11 @@ button:hover {
 
 .card-title {
   font-weight: 900;
+}
+
+.card-notes {
+  max-height: 57px;
+  overflow: hidden;
 }
 
 .card-name {
