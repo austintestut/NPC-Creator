@@ -67,7 +67,7 @@ class App extends React.Component {
       .get(`/npcs/${userID}`)
       .then((data) => {
         this.setState({
-          npcData: data.data,
+          npcData: data.data.reverse(),
           npcCount: data.data.length,
         });
       })
@@ -219,7 +219,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { authenticated, userName, npcCount } = this.state;
+    const { authenticated, userName, npcCount, editFormShowing, npcData } = this.state;
     return (
       <div>
         {!authenticated && (
@@ -239,10 +239,10 @@ class App extends React.Component {
               )}
               <h2>My NPCs</h2>
               <NPCCardContainer
-                npcData={this.state.npcData}
+                npcData={npcData}
                 showEditForm={this.showEditForm}
               />
-              {this.state.editFormShowing && (
+              {editFormShowing && (
                 <EditNPCForm
                   cancelEdit={this.cancelEdit}
                   updateNPC={this.updateNPC}
