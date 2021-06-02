@@ -237,7 +237,7 @@ class App extends React.Component {
                   cancelAdd={this.cancelAdd}
                 />
               )}
-              <h2>My NPCs</h2>
+              {/* <span className="npc-section-header">My NPCs</span> */}
               <NPCCardContainer
                 npcData={npcData}
                 showEditForm={this.showEditForm}
