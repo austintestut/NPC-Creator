@@ -16,6 +16,7 @@ const LandingPage = ({ authenticateUser }) => (
         </div>
         <span className="login-text">Log in with Google</span>
       </button>
+      <button id="sessionless-login">Continue without an account</button>
     </a>
     <Footer />
   </div>
