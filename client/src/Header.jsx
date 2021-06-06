@@ -11,7 +11,7 @@ const Header = ({ userName, npcCount }) => (
     <div id="header-buffer-2" />
     <span id="header-npc-count">NPCs Created: {npcCount}</span>
     <a href="/logout">
-      <button id="logout-button">Logout</button>
+      <button id="logout-button">{userName === 'Not signed in' ? 'Home' : 'Logout'}</button>
     </a>
   </div>
 );
