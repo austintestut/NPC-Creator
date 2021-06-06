@@ -22,6 +22,7 @@ class App extends React.Component {
       userID: null,
       userName: null,
       authenticated: false,
+      sessionlessID: -1,
     };
     this.getAllNPCs = this.getAllNPCs.bind(this);
     this.generateNPC = this.generateNPC.bind(this);
@@ -33,10 +34,14 @@ class App extends React.Component {
     this.updateNPC = this.updateNPC.bind(this);
     this.deleteNPC = this.deleteNPC.bind(this);
     this.authenticateUser = this.authenticateUser.bind(this);
+    this.makeSessionless = this.makeSessionless.bind(this);
   }
 
   componentDidMount() {
-    this.authenticateUser();
+    const { userID } = this.state;
+    if (userID !== "sessionless") {
+      this.authenticateUser();
+    }
   }
 
   authenticateUser() {
@@ -62,22 +67,46 @@ class App extends React.Component {
       });
   }
 
+  makeSessionless() {
+    this.setState({
+      userID: "sessionless",
+      userName: "Not signed in",
+      authenticated: true,
+    });
+  }
+
   getAllNPCs(userID) {
-    axios
-      .get(`/npcs/${userID}`)
-      .then((data) => {
-        this.setState({
-          npcData: data.data.reverse(),
-          npcCount: data.data.length,
-        });
-      })
-      .catch((err) => {
-        console.log("err getting NPCs --client", err);
+    const { npcData } = this.state;
+    if (userID === "sessionless") {
+      this.setState({
+        npcCount: npcData.length,
       });
+    } else {
+      axios
+        .get(`/npcs/${userID}`)
+        .then((data) => {
+          console.log(data.data); //testing
+          this.setState({
+            npcData: data.data.reverse(),
+            npcCount: data.data.length,
+          });
+        })
+        .catch((err) => {
+          console.log("err getting NPCs --client", err);
+        });
+    }
   }
 
   addNPC() {
-    const { userID } = this.state;
+    const { userID, npcData, sessionlessID } = this.state;
+    let npc = {
+      name: document.getElementById("nameInput").value,
+      userID: userID,
+      race: document.getElementById("raceInput").value,
+      demeanor: document.getElementById("demeanorInput").value,
+      quality: document.getElementById("qualityInput").value,
+      notes: "",
+    };
     if (
       document.getElementById("nameInput").value === "" ||
       document.getElementById("raceInput").value === "" ||
@@ -86,24 +115,31 @@ class App extends React.Component {
       window.alert("Cannot submit blank NPC!\n(Quality can be blank)");
       return;
     }
-    axios
-      .post("/npcs", {
-        name: document.getElementById("nameInput").value,
-        userID: userID,
-        race: document.getElementById("raceInput").value,
-        demeanor: document.getElementById("demeanorInput").value,
-        quality: document.getElementById("qualityInput").value,
+    if (userID === "sessionless") {
+      npc.id = sessionlessID + 1; // need to update to be unique
+      this.setState({
+        sessionlessID: sessionlessID + 1,
       })
-      .then((res) => {
-        document.getElementById("nameInput").value = "";
-        document.getElementById("raceInput").value = "";
-        document.getElementById("demeanorInput").value = "";
-        document.getElementById("qualityInput").value = "";
-        this.getAllNPCs(userID);
-      })
-      .catch((err) => {
-        console.log("err saving NPC --client");
-      });
+      let newData = npcData.unshift(npc);
+      document.getElementById("nameInput").value = "";
+      document.getElementById("raceInput").value = "";
+      document.getElementById("demeanorInput").value = "";
+      document.getElementById("qualityInput").value = "";
+      this.getAllNPCs(userID);
+    } else {
+      axios
+        .post("/npcs", npc)
+        .then((res) => {
+          document.getElementById("nameInput").value = "";
+          document.getElementById("raceInput").value = "";
+          document.getElementById("demeanorInput").value = "";
+          document.getElementById("qualityInput").value = "";
+          this.getAllNPCs(userID);
+        })
+        .catch((err) => {
+          console.log("err saving NPC --client");
+        });
+    }
   }
 
   generateNPC() {
@@ -132,7 +168,9 @@ class App extends React.Component {
   }
 
   updateNPC() {
-    const { userID } = this.state;
+    const { userID, npcData, editID } = this.state;
+    debugger;
+    console.log('data before', npcData); // testing
     if (
       document.getElementById("editNameInput").value === "" ||
       document.getElementById("editRaceInput").value === "" ||
@@ -143,21 +181,54 @@ class App extends React.Component {
       );
       return;
     }
-    axios
-      .put("/npcs", {
-        id: this.state.editID,
-        name: document.getElementById("editNameInput").value,
-        race: document.getElementById("editRaceInput").value,
-        demeanor: document.getElementById("editDemeanorInput").value,
-        notes: document.getElementById("editNotesInput").value,
-        quality: document.getElementById("editQualityInput").value,
-      })
-      .then((response) => {
-        this.setState({
+    if (userID === "sessionless") {
+      let newData = npcData;
+      let newNPC;
+      let editPosition;
+      for (let i = 0; i < newData.length; i++) {
+        if (newData[i].id === editID) {
+          newNPC = {
+            userID: "sessionless",
+            id: editID,
+            name: document.getElementById("editNameInput").value,
+            race: document.getElementById("editRaceInput").value,
+            demeanor: document.getElementById("editDemeanorInput").value,
+            notes: document.getElementById("editNotesInput").value,
+            quality: document.getElementById("editQualityInput").value,
+          }
+          newData[i] = newNPC;
+          editPosition = i;
+          break;
+        }
+      }
+      newData.splice(editPosition, 1);
+      newData.unshift(newNPC);
+      this.setState(
+        {
+          npcData: newData,
           editFormShowing: false,
+        },
+        () => {
+          this.getAllNPCs(userID);
+        }
+      );
+    } else {
+      axios
+        .put("/npcs", {
+          id: editID,
+          name: document.getElementById("editNameInput").value,
+          race: document.getElementById("editRaceInput").value,
+          demeanor: document.getElementById("editDemeanorInput").value,
+          notes: document.getElementById("editNotesInput").value,
+          quality: document.getElementById("editQualityInput").value,
+        })
+        .then((response) => {
+          this.setState({
+            editFormShowing: false,
+          });
+          this.getAllNPCs(userID);
         });
-        this.getAllNPCs(userID);
-      });
+    }
   }
 
   deleteNPC() {
@@ -219,11 +290,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { authenticated, userName, npcCount, editFormShowing, npcData } = this.state;
+    const { authenticated, userName, npcCount, editFormShowing, npcData } =
+      this.state;
     return (
       <div>
         {!authenticated && (
-          <LandingPage authenticateUser={this.authenticateUser} />
+          <LandingPage
+            authenticateUser={this.authenticateUser}
+            makeSessionless={this.makeSessionless}
+          />
         )}
         {authenticated && (
           <>
