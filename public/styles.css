@@ -30,11 +30,11 @@ body {
 @keyframes landing-tagline-fade {
   from {
     opacity: 0;
-    top: 20%;
+    /* top: 20%; */
   }
   to {
     opacity: 1;
-    top: 0;
+    /* top: 0; */
   }
 }
 
@@ -52,6 +52,7 @@ button:hover {
   cursor: pointer;
   background-color: var(--tertiary);
   color: var(--secondary);
+  box-shadow: 0 0 6px var(--main);
 }
 
 .npc-section-header {
@@ -126,7 +127,7 @@ button:hover {
   background-color: var(--tertiary);
   color: var(--secondary);
   box-shadow: -2px 2px 4px var(--secondary);
-  transition: top 0.25s, right 0.25s, box-shadow .25s;
+  transition: top 0.25s, right 0.25s, box-shadow 0.25s;
   position: relative;
   top: 0;
   right: 0;
@@ -200,14 +201,28 @@ button:hover {
   animation-delay: 1s;
 }
 
+.login-button-container {
+  margin-top: 25px;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  opacity: 0;
+  animation-name: landing-tagline-fade;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-delay: 1.25s;
+}
+
+.login-anchor {
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #login-button {
   height: 40px;
   width: 180px;
-  position: absolute;
   display: grid;
   grid-template-columns: auto auto;
-  top: 5px;
-  right: 5px;
   background-color: #4285f4;
   color: white;
   box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
@@ -215,6 +230,20 @@ button:hover {
 
 #login-button:hover {
   box-shadow: 0 0 6px #4285f4;
+}
+
+#login-separator {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 500;
+  color: var(--secondary);
+}
+
+#sessionless-login {
+  height: 40px;
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .google-icon-wrapper {
