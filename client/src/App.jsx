@@ -85,7 +85,6 @@ class App extends React.Component {
       axios
         .get(`/npcs/${userID}`)
         .then((data) => {
-          console.log(data.data); //testing
           this.setState({
             npcData: data.data.reverse(),
             npcCount: data.data.length,
@@ -119,7 +118,7 @@ class App extends React.Component {
       npc.id = sessionlessID + 1; // need to update to be unique
       this.setState({
         sessionlessID: sessionlessID + 1,
-      })
+      });
       let newData = npcData.unshift(npc);
       document.getElementById("nameInput").value = "";
       document.getElementById("raceInput").value = "";
@@ -170,7 +169,6 @@ class App extends React.Component {
   updateNPC() {
     const { userID, npcData, editID } = this.state;
     debugger;
-    console.log('data before', npcData); // testing
     if (
       document.getElementById("editNameInput").value === "" ||
       document.getElementById("editRaceInput").value === "" ||
@@ -195,7 +193,7 @@ class App extends React.Component {
             demeanor: document.getElementById("editDemeanorInput").value,
             notes: document.getElementById("editNotesInput").value,
             quality: document.getElementById("editQualityInput").value,
-          }
+          };
           newData[i] = newNPC;
           editPosition = i;
           break;
@@ -232,10 +230,26 @@ class App extends React.Component {
   }
 
   deleteNPC() {
-    const { userID } = this.state;
-    axios
+    const { userID, editID, npcData } = this.state;
+    if (userID === "sessionless") {
+      let newData = npcData;
+      for (let i = 0; i < newData.length; i++) {
+        if ((newData[i].id === editID)) {
+          newData.splice(i, 1);
+        }
+      }
+      this.setState({
+        npcData: newData,
+        editFormShowing: false,
+        npcFormName: "",
+        npcFormRace: "",
+        npcFormDemeanor: "",
+      });
+    } else {
+
+      axios
       .put("/npcs/delete", {
-        id: this.state.editID,
+        id: editID,
       })
       .then((response) => {
         this.setState({
@@ -246,6 +260,7 @@ class App extends React.Component {
         });
         this.getAllNPCs(userID);
       });
+    }
   }
 
   showAddForm() {
