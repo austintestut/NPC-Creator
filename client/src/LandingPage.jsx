@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "./Footer.jsx";
 import Title from "../../public/images/npcc.png";
 
-const LandingPage = ({ authenticateUser }) => (
+const LandingPage = ({ authenticateUser, makeSessionless }) => (
   <div id="landing">
     <img id="landing-title-pic" src={Title} />
     <span id="landing-description">Create and save new Non-Player Characters on the fly!</span>
@@ -17,7 +17,7 @@ const LandingPage = ({ authenticateUser }) => (
         <span className="login-text">Log in with Google</span>
       </button>
     </a>
-      <button id="sessionless-login">Continue without an account</button>
+      <button id="sessionless-login" onClick={makeSessionless}>Continue without an account</button>
     <Footer />
   </div>
 );
