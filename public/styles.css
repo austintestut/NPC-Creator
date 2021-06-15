@@ -43,15 +43,15 @@ button {
   border-color: var(--tertiary);
   border-radius: 5px;
   color: white;
-  background-color: var(--main);
+  background-image: linear-gradient(var(--secondary), var(--main));
   height: 40px;
   min-width: 100px;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: var(--tertiary);
-  color: var(--secondary);
+  background-image: linear-gradient(var(--main), var(--secondary));
+  color: var(--main);
   box-shadow: 0 0 6px var(--main);
 }
 
