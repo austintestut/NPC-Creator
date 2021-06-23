@@ -55,6 +55,11 @@ button:hover {
   box-shadow: 0 0 6px var(--main);
 }
 
+#search {
+position: relative;
+float: right;
+}
+
 .npc-section-header {
   font-weight: 700;
   font-size: 30px;

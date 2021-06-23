@@ -9,6 +9,7 @@ import LandingPage from "./LandingPage.jsx";
 import Footer from "./Footer.jsx";
 import Header from "./Header.jsx";
 import Title from "../../public/images/npc-text.png";
+import SearchBar from "./SearchBar.jsx";
 
 class App extends React.Component {
   constructor() {
@@ -234,7 +235,7 @@ class App extends React.Component {
     if (userID === "sessionless") {
       let newData = npcData;
       for (let i = 0; i < newData.length; i++) {
-        if ((newData[i].id === editID)) {
+        if (newData[i].id === editID) {
           newData.splice(i, 1);
         }
       }
@@ -246,20 +247,19 @@ class App extends React.Component {
         npcFormDemeanor: "",
       });
     } else {
-
       axios
-      .put("/npcs/delete", {
-        id: editID,
-      })
-      .then((response) => {
-        this.setState({
-          editFormShowing: false,
-          npcFormName: "",
-          npcFormRace: "",
-          npcFormDemeanor: "",
+        .put("/npcs/delete", {
+          id: editID,
+        })
+        .then((response) => {
+          this.setState({
+            editFormShowing: false,
+            npcFormName: "",
+            npcFormRace: "",
+            npcFormDemeanor: "",
+          });
+          this.getAllNPCs(userID);
         });
-        this.getAllNPCs(userID);
-      });
     }
   }
 
@@ -327,7 +327,7 @@ class App extends React.Component {
                   cancelAdd={this.cancelAdd}
                 />
               )}
-              {/* <span className="npc-section-header">My NPCs</span> */}
+              <SearchBar />
               <NPCCardContainer
                 npcData={npcData}
                 showEditForm={this.showEditForm}
