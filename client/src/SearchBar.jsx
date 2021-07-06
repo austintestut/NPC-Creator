@@ -1,9 +1,14 @@
 import React from "react";
 
-const SearchBar = () => (
+const SearchBar = ({ updateSearch }) => (
   <form id="search">
     <label hidden>Search </label>
-    <input type="text" placeholder="Search NPCs" id="searchValue"></input>
+    <input
+      type="text"
+      placeholder="Search NPCs"
+      id="searchValue"
+      onChange={updateSearch}
+    ></input>
   </form>
 );
 
