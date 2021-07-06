@@ -316,7 +316,7 @@ class App extends React.Component {
         this.setState({
           npcData: npcMasterData,
         });
-        return npcMasterData;
+        return false;
       }
       return characters.filter((char) => {
         const name = char.name.toLowerCase();
@@ -328,16 +328,18 @@ class App extends React.Component {
       this.state.npcData,
       document.getElementById("searchValue").value
     );
-    people = people.slice().sort((a, b) => {
-      if (a.name > b.name) {
-        return 1;
-      }
-      return -1;
-    });
+    if (people) {
+      people = people.slice().sort((a, b) => {
+        if (a.name > b.name) {
+          return 1;
+        }
+        return -1;
+      });
 
-    this.setState({
-      npcData: people,
-    });
+      this.setState({
+        npcData: people,
+      });
+    }
   }
 
   render() {
