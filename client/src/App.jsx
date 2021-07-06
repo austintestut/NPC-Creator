@@ -15,6 +15,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      npcMasterData: [],
       npcData: [],
       npcCount: 0,
       addFormShowing: false,
@@ -36,6 +37,7 @@ class App extends React.Component {
     this.deleteNPC = this.deleteNPC.bind(this);
     this.authenticateUser = this.authenticateUser.bind(this);
     this.makeSessionless = this.makeSessionless.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   componentDidMount() {
@@ -86,8 +88,10 @@ class App extends React.Component {
       axios
         .get(`/npcs/${userID}`)
         .then((data) => {
+          const npcs = data.data.reverse();
           this.setState({
-            npcData: data.data.reverse(),
+            npcData: npcs,
+            npcMasterData: npcs,
             npcCount: data.data.length,
           });
         })
@@ -304,6 +308,38 @@ class App extends React.Component {
     });
   }
 
+  updateSearch() {
+    console.log("making it to update function");
+    const searchCharacters = (characters, query) => {
+      if (!query) {
+        const { npcMasterData } = this.state;
+        this.setState({
+          npcData: npcMasterData,
+        });
+        return npcMasterData;
+      }
+      return characters.filter((char) => {
+        const name = char.name.toLowerCase();
+        return name.includes(query.toLowerCase());
+      });
+    };
+
+    var people = searchCharacters(
+      this.state.npcData,
+      document.getElementById("searchValue").value
+    );
+    people = people.slice().sort((a, b) => {
+      if (a.name > b.name) {
+        return 1;
+      }
+      return -1;
+    });
+
+    this.setState({
+      npcData: people,
+    });
+  }
+
   render() {
     const { authenticated, userName, npcCount, editFormShowing, npcData } =
       this.state;
@@ -327,7 +363,7 @@ class App extends React.Component {
                   cancelAdd={this.cancelAdd}
                 />
               )}
-              <SearchBar />
+              <SearchBar updateSearch={this.updateSearch} />
               <NPCCardContainer
                 npcData={npcData}
                 showEditForm={this.showEditForm}
