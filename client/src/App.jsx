@@ -309,7 +309,6 @@ class App extends React.Component {
   }
 
   updateSearch() {
-    console.log("making it to update function");
     const searchCharacters = (characters, query) => {
       if (!query) {
         const { npcMasterData } = this.state;
