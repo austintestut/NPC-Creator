@@ -50,14 +50,15 @@ button {
 
 button:hover {
   cursor: pointer;
-  background-image: linear-gradient(var(--main), var(--secondary));
-  color: var(--main);
+  color: var(--tertiary);
   box-shadow: 0 0 6px var(--main);
 }
 
 #search {
 position: relative;
 float: right;
+border: 2px solid var(--secondary);
+border-radius: 5px;
 }
 
 .npc-section-header {
