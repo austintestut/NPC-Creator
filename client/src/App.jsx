@@ -324,7 +324,7 @@ class App extends React.Component {
     };
 
     var people = searchCharacters(
-      this.state.npcData,
+      this.state.npcMasterData,
       document.getElementById("searchValue").value
     );
     if (people) {
