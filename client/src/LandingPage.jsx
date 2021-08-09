@@ -3,7 +3,7 @@ import Footer from "./Footer.jsx";
 import Title from "../../public/images/npcc.png";
 
 const LandingPage = ({ authenticateUser, makeSessionless }) => (
-  <div id="landing">
+  <div data-testid="landing-page" id="landing">
     <img id="landing-title-pic" src={Title} />
     <span id="landing-description">
       Create and save new Non-Player Characters on the fly!
